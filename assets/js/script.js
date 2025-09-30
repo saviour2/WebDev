@@ -40,6 +40,15 @@ const ProjectsData = {
     inProgress: [
         {
             id: 3,
+            title: "Portfolio Website v2.0",
+            description: "Redesigning and enhancing the portfolio website with advanced animations, certificate categorization system, and improved user experience. Features dual-theme support and modern security terminal aesthetic.",
+            technologies: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS", "GSAP"],
+            status: "in-progress",
+            imageUrl: "assets/Files/Terminal_Portfolio.png",
+            githubUrl: "https://github.com/saviour2/WebDev"
+        },
+        {
+            id: 4,
             title: "Google Student Ambassador Program",
             description: "Leading AI workshops, organizing tech events, and driving conversations around AI innovation among peers as part of Google's student leadership program.",
             technologies: ["AI", "Community Building", "Event Management", "Leadership"],
@@ -47,7 +56,7 @@ const ProjectsData = {
             githubUrl: "https://github.com/saikatdas0790"
         },
         {
-            id: 4,
+            id: 5,
             title: "IBM SkillsBuild Internship",
             description: "Completing a comprehensive 6-week intensive internship focused on modern Front-End Web Development practices under the guidance of industry mentors.",
             technologies: ["HTML5", "CSS3", "JavaScript", "React", "Modern Frontend"],
@@ -57,18 +66,84 @@ const ProjectsData = {
     ],
     planned: [
         {
-            id: 5,
-            title: "Advanced Full-Stack Web Application",
-            description: "Planning to build a comprehensive full-stack application incorporating modern technologies and best practices learned during internships and certifications.",
-            technologies: ["React", "Node.js", "MongoDB", "Express", "Cloud Deployment"],
-            status: "planned"
+            id: 6,
+            title: "Automated Cloud Security Scanner",
+            description: "Build an automated security scanner for cloud infrastructure. Will include vulnerability assessment, compliance checking, and real-time alerting capabilities.",
+            technologies: ["Python", "AWS/Azure", "Security APIs", "Docker"],
+            status: "planned",
+            timeline: "Q4 2025"
         },
         {
-            id: 6,
-            title: "Google Cloud Integration Project",
-            description: "Exploring Google Cloud Platform services to build a scalable cloud-native application demonstrating cloud computing foundations knowledge.",
-            technologies: ["Google Cloud Platform", "Cloud Functions", "Firebase", "Cloud Storage"],
-            status: "planned"
+            id: 7,
+            title: "Simple REST API (Book/Movie Catalog)",
+            description: "Develop a comprehensive REST API for managing book and movie catalogs with full CRUD operations, user authentication, and database integration.",
+            technologies: ["Node.js", "Express", "MongoDB", "JWT", "RESTful APIs"],
+            status: "planned",
+            timeline: "Q4 2025"
+        },
+        {
+            id: 8,
+            title: "Basic User Authentication System",
+            description: "Implement a secure user authentication system with registration, login, password reset, and session management features.",
+            technologies: ["Node.js", "Express", "MongoDB", "bcrypt", "JWT"],
+            status: "planned",
+            timeline: "Q4 2025"
+        },
+        {
+            id: 9,
+            title: "Web Scraper & Data Aggregator",
+            description: "Create an intelligent web scraper to collect and aggregate data from multiple sources with data processing and visualization capabilities.",
+            technologies: ["Python", "BeautifulSoup", "Scrapy", "Pandas", "SQLite"],
+            status: "planned",
+            timeline: "Q1 2026"
+        },
+        {
+            id: 10,
+            title: "Containerized Backend Deployment",
+            description: "Containerize and deploy a backend application on cloud VM with Docker, implementing CI/CD pipeline and monitoring.",
+            technologies: ["Docker", "Docker Compose", "AWS/GCP", "CI/CD", "Monitoring"],
+            status: "planned",
+            timeline: "Q1 2026"
+        },
+        {
+            id: 11,
+            title: "Simple Serverless Web App",
+            description: "Build a serverless web application using cloud functions, demonstrating modern cloud-native development practices.",
+            technologies: ["AWS Lambda", "API Gateway", "DynamoDB", "S3", "CloudFormation"],
+            status: "planned",
+            timeline: "Q1 2026"
+        },
+        {
+            id: 12,
+            title: "Terraform Infrastructure Lab",
+            description: "Hands-on Infrastructure as Code project using Terraform to provision and manage cloud resources with best practices.",
+            technologies: ["Terraform", "AWS/Azure", "IaC", "Git", "CI/CD"],
+            status: "planned",
+            timeline: "Q3 2026"
+        },
+        {
+            id: 13,
+            title: "Automated Backup Script",
+            description: "Develop a comprehensive backup solution with automated scheduling, encryption, and cloud storage integration.",
+            technologies: ["Python", "Cron", "Cloud Storage", "Encryption", "Logging"],
+            status: "planned",
+            timeline: "Q3 2026"
+        },
+        {
+            id: 14,
+            title: "Secure CI/CD Pipeline",
+            description: "Implement a secure continuous integration and deployment pipeline with vulnerability scanning and automated testing.",
+            technologies: ["GitHub Actions", "Docker", "Security Scanning", "SAST", "DAST"],
+            status: "planned",
+            timeline: "Q4 2026"
+        },
+        {
+            id: 15,
+            title: "Infrastructure as Code Deployment",
+            description: "Deploy a complete application stack using Infrastructure as Code principles with Terraform and cloud best practices.",
+            technologies: ["Terraform", "Kubernetes", "Helm", "AWS/GCP", "GitOps"],
+            status: "planned",
+            timeline: "Q4 2026"
         }
     ]
 };
@@ -398,13 +473,28 @@ function createProjectCard(project) {
             <i class="fab fa-github mr-2"></i>GitHub
         </a>` : '';
     
+    // Add project image if available
+    const projectImage = project.imageUrl ? 
+        `<div class="mb-4 rounded-lg overflow-hidden">
+            <img src="${project.imageUrl}" alt="${project.title}" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+        </div>` : '';
+    
+    // Add timeline for planned projects
+    const timeline = project.timeline ? 
+        `<div class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+            <i class="fas fa-calendar-alt mr-1"></i>Timeline: ${project.timeline}
+        </div>` : '';
+    
     card.innerHTML = `
+        ${projectImage}
         <div class="flex justify-between items-start mb-4">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-cloud-primary dark:group-hover:text-cyber-primary transition-colors">
                 ${project.title}
             </h3>
             ${statusBadge}
         </div>
+        
+        ${timeline}
         
         <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
             ${project.description}
