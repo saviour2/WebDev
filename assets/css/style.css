@@ -926,14 +926,13 @@ button:hover::before, a.button:hover::before {
 /* Hero section elements are always visible */
 #hero * {
     opacity: 1 !important;
-    transform: none !important;
 }
 
-/* Override animations for hero section specifically */
-#hero .fade-in-up,
-#hero .fade-in-left, 
-#hero .fade-in-right,
-#hero .scale-in {
+/* Override animations for hero section specifically but preserve animate-bounce */
+#hero .fade-in-up:not(.animate-bounce),
+#hero .fade-in-left:not(.animate-bounce), 
+#hero .fade-in-right:not(.animate-bounce),
+#hero .scale-in:not(.animate-bounce) {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
