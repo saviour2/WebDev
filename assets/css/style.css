@@ -381,6 +381,29 @@ button:hover::before, a.button:hover::before {
     box-shadow: var(--shadow-medium);
 }
 
+/* --- Fix for projects grid visibility --- */
+#projects-grid {
+  min-height: 400px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #222;
+}
+
+body.dark .project-card {
+  background: #23272f;
+  color: #f3f3f3;
+}
+
+/* --- End fix --- */
+
 /* ===================================
    SKILL BADGES
    =================================== */

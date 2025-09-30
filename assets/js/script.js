@@ -17,7 +17,7 @@ let currentCertFilter = 'all';
 
 // Project Data Structure
 const ProjectsData = {
-    completed: [
+    "completed": [
         {
             id: 1,
             title: "Personal Portfolio Website",
@@ -37,7 +37,7 @@ const ProjectsData = {
             githubUrl: "https://github.com/saviour2/minipro"
         }
     ],
-    inProgress: [
+    "in-progress": [
         {
             id: 3,
             title: "Portfolio Website v2.0",
@@ -64,7 +64,7 @@ const ProjectsData = {
             githubUrl: "https://github.com/saikatdas0790"
         }
     ],
-    planned: [
+    "planned": [
         {
             id: 6,
             title: "Automated Cloud Security Scanner",
@@ -194,6 +194,12 @@ function initializeApp() {
     initializeSmoothScrolling();
     
     console.log('✅ Security Terminal Online - All Systems Operational');
+    
+    // Debug project data
+    console.log('🔍 Debug: ProjectsData object:', ProjectsData);
+    console.log('🔍 Debug: Completed projects:', ProjectsData.completed);
+    console.log('🔍 Debug: In-progress projects:', ProjectsData["in-progress"]);
+    console.log('🔍 Debug: Planned projects:', ProjectsData.planned);
 }
 
 function cacheDOMElements() {
@@ -407,6 +413,7 @@ function initializeProjectFiltering() {
 }
 
 function switchProjectFilter(filter) {
+    console.log('🔄 Switching to filter:', filter);
     AppState.currentProjectFilter = filter;
     
     // Update active tab
@@ -427,38 +434,56 @@ function switchProjectFilter(filter) {
 }
 
 function renderProjects(filter) {
+    console.log('🎯 renderProjects called with filter:', filter);
+    console.log('📊 Available projects for filter:', ProjectsData[filter]);
+    
     const projects = ProjectsData[filter] || [];
+    console.log('📋 Projects array:', projects, 'Length:', projects.length);
     
-    if (!DOMElements.projectGrid) return;
+    if (!DOMElements.projectGrid) {
+        console.error('❌ Project grid element not found!');
+        return;
+    }
     
-    // Add fade-out effect
-    DOMElements.projectGrid.style.opacity = '0';
+    console.log('✅ Project grid element found:', DOMElements.projectGrid);
     
-    setTimeout(() => {
-        DOMElements.projectGrid.innerHTML = '';
+    // Clear grid immediately (disable fade effect for debugging)
+    DOMElements.projectGrid.innerHTML = '';
         
-        if (projects.length === 0) {
-            DOMElements.projectGrid.innerHTML = `
-                <div class="col-span-full text-center py-12">
-                    <i class="fas fa-folder-open text-4xl text-gray-400 dark:text-gray-600 mb-4"></i>
-                    <p class="text-gray-500 dark:text-gray-400 text-lg">No projects in this category yet.</p>
-                </div>
-            `;
-        } else {
-            projects.forEach(project => {
-                const projectCard = createProjectCard(project);
-                DOMElements.projectGrid.appendChild(projectCard);
-            });
-        }
+    if (projects.length === 0) {
+        DOMElements.projectGrid.innerHTML = `
+            <div class="col-span-full text-center py-12">
+                <i class="fas fa-folder-open text-4xl text-gray-400 dark:text-gray-600 mb-4"></i>
+                <p class="text-gray-500 dark:text-gray-400 text-lg">No projects in this category yet.</p>
+            </div>
+        `;
+    } else {
+        projects.forEach(project => {
+            console.log('🔄 Processing project:', project.title);
+            const projectCard = createProjectCard(project);
+            console.log('📋 Created card:', projectCard);
+            console.log('🎯 Appending to grid:', DOMElements.projectGrid);
+            DOMElements.projectGrid.appendChild(projectCard);
+            console.log('✅ Card appended successfully');
+        });
+        console.log('🏁 Final grid children count:', DOMElements.projectGrid.children.length);
+    }
         
-        // Fade-in effect
-        DOMElements.projectGrid.style.opacity = '1';
-    }, 150);
+    // Set opacity to 1 immediately
+    DOMElements.projectGrid.style.opacity = '1';
+        
+    // Debug: Check if cards are in DOM
+    console.log('🔍 Final check - Grid innerHTML:', DOMElements.projectGrid.innerHTML);
+    console.log('🔍 Grid children count:', DOMElements.projectGrid.children.length);
 }
 
 function createProjectCard(project) {
+    console.log('🔨 Creating project card for:', project);
+    
     const card = document.createElement('div');
     card.className = 'project-card group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2';
+    
+    console.log('📄 Card element created:', card);
     
     const statusBadge = getStatusBadge(project.status);
     const technologies = project.technologies.map(tech => `<span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">${tech}</span>`).join('');
@@ -510,6 +535,7 @@ function createProjectCard(project) {
         </div>
     `;
     
+    console.log('✅ Card HTML set, returning card:', card);
     return card;
 }
 
