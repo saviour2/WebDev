@@ -6,7 +6,7 @@
 
 // Application State
 const AppState = {
-    currentTheme: 'light',
+    currentTheme: 'dark',
     isMobileMenuOpen: false,
     currentProjectFilter: 'completed',
     isResumeModalOpen: false
@@ -187,8 +187,8 @@ function cacheDOMElements() {
 // =====================================
 
 function initializeTheme() {
-    // Check for saved theme or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    // Check for saved theme or default to dark
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     AppState.currentTheme = savedTheme;
     
     // Apply theme
@@ -979,7 +979,9 @@ class ParticleSystem {
         this.canvas = document.getElementById('particles-canvas');
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
+        this.mousePos = { x: 0, y: 0 };
         this.animationId = null;
+        this.time = 0;
         
         this.init();
     }
@@ -991,25 +993,57 @@ class ParticleSystem {
         
         window.addEventListener('resize', () => this.resize());
         document.addEventListener('scroll', () => this.handleScroll());
+        document.addEventListener('mousemove', (e) => this.handleMouse(e));
     }
     
     resize() {
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
+        this.particles = [];
+        this.createParticles();
+    }
+    
+    handleMouse(e) {
+        this.mousePos.x = e.clientX;
+        this.mousePos.y = e.clientY;
     }
     
     createParticles() {
-        const particleCount = Math.min(50, Math.floor((window.innerWidth * window.innerHeight) / 15000));
+        const particleCount = Math.min(80, Math.floor((window.innerWidth * window.innerHeight) / 12000));
+        const symbols = ['0', '1', '{', '}', '<', '>', '/', '\\', '*', '+', '-', '=', '$', '#'];
         
         for (let i = 0; i < particleCount; i++) {
+            const type = Math.random() < 0.7 ? 'dot' : Math.random() < 0.5 ? 'symbol' : 'star';
             this.particles.push({
                 x: Math.random() * this.canvas.width,
                 y: Math.random() * this.canvas.height,
-                size: Math.random() * 2 + 0.5,
-                speedX: (Math.random() - 0.5) * 0.5,
-                speedY: (Math.random() - 0.5) * 0.5,
-                opacity: Math.random() * 0.5 + 0.2,
-                color: this.getParticleColor()
+                size: Math.random() * 3 + 1,
+                speedX: (Math.random() - 0.5) * 0.8,
+                speedY: (Math.random() - 0.5) * 0.8,
+                opacity: Math.random() * 0.6 + 0.3,
+                color: this.getParticleColor(),
+                type: type,
+                symbol: symbols[Math.floor(Math.random() * symbols.length)],
+                pulse: Math.random() * Math.PI * 2,
+                pulseSpeed: 0.02 + Math.random() * 0.03,
+                connections: []
+            });
+        }
+        
+        // Add some matrix rain particles
+        for (let i = 0; i < 12; i++) {
+            this.particles.push({
+                x: Math.random() * this.canvas.width,
+                y: -Math.random() * 200,
+                size: 12,
+                speedX: 0,
+                speedY: 1 + Math.random() * 2,
+                opacity: 0.6,
+                color: this.getMatrixColor(),
+                type: 'matrix',
+                symbol: symbols[Math.floor(Math.random() * symbols.length)],
+                trail: [],
+                trailLength: 8
             });
         }
     }
@@ -1017,10 +1051,15 @@ class ParticleSystem {
     getParticleColor() {
         const isDark = document.documentElement.classList.contains('dark');
         const colors = isDark 
-            ? ['rgba(0, 245, 255, ', 'rgba(157, 0, 255, ', 'rgba(255, 0, 128, ']
-            : ['rgba(74, 144, 226, ', 'rgba(123, 207, 255, ', 'rgba(80, 200, 120, '];
+            ? ['rgba(0, 245, 255, ', 'rgba(157, 0, 255, ', 'rgba(255, 0, 128, ', 'rgba(0, 255, 150, ']
+            : ['rgba(30, 90, 180, ', 'rgba(60, 30, 140, ', 'rgba(140, 30, 90, ', 'rgba(30, 140, 70, '];
         
         return colors[Math.floor(Math.random() * colors.length)];
+    }
+    
+    getMatrixColor() {
+        const isDark = document.documentElement.classList.contains('dark');
+        return isDark ? 'rgba(0, 255, 150, ' : 'rgba(30, 90, 180, ';
     }
     
     handleScroll() {
@@ -1029,9 +1068,11 @@ class ParticleSystem {
         
         // Update particles based on scroll
         this.particles.forEach(particle => {
-            particle.y -= scrollSpeed * 0.001;
-            if (particle.y < -10) particle.y = this.canvas.height + 10;
-            if (particle.y > this.canvas.height + 10) particle.y = -10;
+            if (particle.type !== 'matrix') {
+                particle.y -= scrollSpeed * 0.001;
+                if (particle.y < -10) particle.y = this.canvas.height + 10;
+                if (particle.y > this.canvas.height + 10) particle.y = -10;
+            }
         });
         
         // Parallax background elements
@@ -1044,39 +1085,166 @@ class ParticleSystem {
         if (bg3) bg3.style.transform = `translateY(${scrollY * 0.1}px) translateX(${Math.sin(scrollY * 0.0015) * 25}px)`;
     }
     
+    drawConnections() {
+        for (let i = 0; i < this.particles.length; i++) {
+            const particleA = this.particles[i];
+            if (particleA.type === 'matrix') continue;
+            
+            for (let j = i + 1; j < this.particles.length; j++) {
+                const particleB = this.particles[j];
+                if (particleB.type === 'matrix') continue;
+                
+                const distance = Math.sqrt(
+                    Math.pow(particleA.x - particleB.x, 2) + 
+                    Math.pow(particleA.y - particleB.y, 2)
+                );
+                
+                if (distance < 120) {
+                    const opacity = (120 - distance) / 120 * 0.3;
+                    this.ctx.strokeStyle = particleA.color + opacity + ')';
+                    this.ctx.lineWidth = 0.5;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(particleA.x, particleA.y);
+                    this.ctx.lineTo(particleB.x, particleB.y);
+                    this.ctx.stroke();
+                }
+            }
+            
+            // Mouse interaction
+            const mouseDistance = Math.sqrt(
+                Math.pow(particleA.x - this.mousePos.x, 2) + 
+                Math.pow(particleA.y - this.mousePos.y, 2)
+            );
+            
+            if (mouseDistance < 150) {
+                const opacity = (150 - mouseDistance) / 150 * 0.4;
+                this.ctx.strokeStyle = particleA.color + opacity + ')';
+                this.ctx.lineWidth = 1;
+                this.ctx.beginPath();
+                this.ctx.moveTo(particleA.x, particleA.y);
+                this.ctx.lineTo(this.mousePos.x, this.mousePos.y);
+                this.ctx.stroke();
+                
+                // Push particles away from mouse
+                const force = (150 - mouseDistance) / 150 * 0.5;
+                const angle = Math.atan2(particleA.y - this.mousePos.y, particleA.x - this.mousePos.x);
+                particleA.x += Math.cos(angle) * force;
+                particleA.y += Math.sin(angle) * force;
+            }
+        }
+    }
+    
     animate() {
+        this.time += 0.016;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
-        this.particles.forEach(particle => {
+        // Draw connections first
+        this.drawConnections();
+        
+        this.particles.forEach((particle, index) => {
             // Update position
             particle.x += particle.speedX;
             particle.y += particle.speedY;
             
-            // Wrap around edges
-            if (particle.x < 0) particle.x = this.canvas.width;
-            if (particle.x > this.canvas.width) particle.x = 0;
-            if (particle.y < 0) particle.y = this.canvas.height;
-            if (particle.y > this.canvas.height) particle.y = 0;
+            // Update pulse
+            if (particle.pulse !== undefined) {
+                particle.pulse += particle.pulseSpeed;
+            }
             
-            // Draw particle
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-            this.ctx.fillStyle = particle.color + particle.opacity + ')';
-            this.ctx.fill();
-            
-            // Add glow effect
-            this.ctx.shadowColor = particle.color + '0.8)';
-            this.ctx.shadowBlur = 10;
-            this.ctx.fill();
-            this.ctx.shadowBlur = 0;
+            // Handle different particle types
+            if (particle.type === 'matrix') {
+                // Matrix rain logic
+                particle.y += particle.speedY;
+                
+                // Add to trail
+                particle.trail.unshift({ x: particle.x, y: particle.y });
+                if (particle.trail.length > particle.trailLength) {
+                    particle.trail.pop();
+                }
+                
+                if (particle.y > this.canvas.height + 50) {
+                    particle.y = -Math.random() * 200;
+                    particle.x = Math.random() * this.canvas.width;
+                }
+                
+                // Draw trail
+                particle.trail.forEach((point, i) => {
+                    const opacity = (particle.trailLength - i) / particle.trailLength * particle.opacity;
+                    this.ctx.font = `${particle.size}px monospace`;
+                    this.ctx.fillStyle = particle.color + opacity + ')';
+                    this.ctx.fillText(particle.symbol, point.x, point.y);
+                });
+            } else {
+                // Wrap around edges for regular particles
+                if (particle.x < -20) particle.x = this.canvas.width + 20;
+                if (particle.x > this.canvas.width + 20) particle.x = -20;
+                if (particle.y < -20) particle.y = this.canvas.height + 20;
+                if (particle.y > this.canvas.height + 20) particle.y = -20;
+                
+                // Calculate pulsing size
+                const pulseSize = particle.size + Math.sin(particle.pulse) * 0.5;
+                const pulseOpacity = particle.opacity + Math.sin(particle.pulse) * 0.2;
+                
+                this.ctx.save();
+                
+                if (particle.type === 'star') {
+                    // Draw star
+                    this.drawStar(particle.x, particle.y, 5, pulseSize * 2, pulseSize, particle.color + pulseOpacity + ')');
+                } else if (particle.type === 'symbol') {
+                    // Draw symbol
+                    this.ctx.font = `${pulseSize * 2}px monospace`;
+                    this.ctx.fillStyle = particle.color + pulseOpacity + ')';
+                    this.ctx.textAlign = 'center';
+                    this.ctx.fillText(particle.symbol, particle.x, particle.y);
+                } else {
+                    // Draw dot with glow
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, pulseSize, 0, Math.PI * 2);
+                    this.ctx.fillStyle = particle.color + pulseOpacity + ')';
+                    this.ctx.shadowColor = particle.color + '0.8)';
+                    this.ctx.shadowBlur = 15;
+                    this.ctx.fill();
+                }
+                
+                this.ctx.restore();
+            }
         });
         
         this.animationId = requestAnimationFrame(() => this.animate());
     }
     
+    drawStar(x, y, spikes, outerRadius, innerRadius, color) {
+        let rot = Math.PI / 2 * 3;
+        let step = Math.PI / spikes;
+        
+        this.ctx.beginPath();
+        this.ctx.moveTo(x, y - outerRadius);
+        
+        for (let i = 0; i < spikes; i++) {
+            let x1 = x + Math.cos(rot) * outerRadius;
+            let y1 = y + Math.sin(rot) * outerRadius;
+            this.ctx.lineTo(x1, y1);
+            rot += step;
+            
+            x1 = x + Math.cos(rot) * innerRadius;
+            y1 = y + Math.sin(rot) * innerRadius;
+            this.ctx.lineTo(x1, y1);
+            rot += step;
+        }
+        
+        this.ctx.lineTo(x, y - outerRadius);
+        this.ctx.closePath();
+        this.ctx.fillStyle = color;
+        this.ctx.fill();
+    }
+    
     updateTheme() {
         this.particles.forEach(particle => {
-            particle.color = this.getParticleColor();
+            if (particle.type === 'matrix') {
+                particle.color = this.getMatrixColor();
+            } else {
+                particle.color = this.getParticleColor();
+            }
         });
     }
 }

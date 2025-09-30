@@ -279,14 +279,15 @@ button:hover::before, a.button:hover::before {
 }
 
 .project-filter-btn.active {
-    background: linear-gradient(135deg, #4A90E2, #50C878);
+    background: linear-gradient(135deg, #4A90E2, #5AAFF0);
     color: white;
     border-color: transparent;
     box-shadow: var(--glow-cloud);
 }
 
 .dark .project-filter-btn.active {
-    background: linear-gradient(135deg, #00F5FF, #9D00FF);
+    background: linear-gradient(135deg, #00D4E6, #7B68EE);
+    color: white;
     box-shadow: var(--glow-cyber);
 }
 
