@@ -59,7 +59,7 @@ DRAFT_*
 *.dev.css
 *.dev.js
 debug.log
-
+context.json
 # Archive files
 *.zip
 *.tar.gz
