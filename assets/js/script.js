@@ -580,9 +580,9 @@ console.log(`
 ║                    🔒 SECURITY TERMINAL                      ║
 ║                      ACCESS GRANTED                          ║
 ║                                                              ║
-║  This is a secure system. All activities are monitored.     ║
-║  Portfolio Version: 1.3.0                                   ║
-║  Theme: Dual Mode (Cloud/Cybersecurity)                     ║
+║  This is a secure system. All activities are monitored.      ║
+║  Portfolio Version: 1.5.0                                    ║
+║  Made with love and care by Saikat :3                        ║
 ╚══════════════════════════════════════════════════════════════╝
 `);
 
