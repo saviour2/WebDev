@@ -1,0 +1,54 @@
+{
+  "project_name": "Portfolio Website - Dual Theme",
+  "current_version": "1.2.0",
+  "last_updated": "2025-09-30",
+  "last_change": "Completed comprehensive CSS with parallax effects, fade animations, and polished interactions",
+  "development_status": "in_progress",
+  "completed_files": [
+    "README.md",
+    ".gitignore",
+    "context.json",
+    "index.html",
+    "assets/css/style.css"
+  ],
+  "pending_files": [
+    "assets/js/script.js"
+  ],
+  "next_steps": [
+    "Build script.js with theme toggle functionality",
+    "Implement Intersection Observer for scroll animations",
+    "Add project filtering logic (Completed/In Progress/Planned tabs)",
+    "Create resume modal open/close functionality",
+    "Implement smooth parallax scrolling with JS",
+    "Add mobile menu toggle",
+    "Populate projects dynamically from data structure",
+    "Optional: Integrate GSAP for advanced animations"
+  ],
+  "theme_concept": {
+    "light_mode": "Cloud/DevOps - Clean and airy aesthetic",
+    "dark_mode": "DevSecOps/Cybersecurity - Sleek and modern aesthetic"
+  },
+  "required_sections": [
+    "Hero Section",
+    "General Info (About + Skills)",
+    "Projects (with Completed/In Progress/Planned tabs)",
+    "Certifications & Workshops",
+    "Contact Me"
+  ],
+  "special_features": [
+    "Theme toggle switch",
+    "Resume modal with watermark",
+    "Smooth scrolling",
+    "Filterable project tabs",
+    "Professional animations"
+  ],
+  "technology_stack": {
+    "core": ["HTML5", "CSS3", "JavaScript ES6+"],
+    "styling_framework": "Tailwind CSS (via CDN)",
+    "animation_libraries": ["GSAP (optional)", "Particles.js (optional)"],
+    "constraints": ["No JS frameworks", "Vanilla JS only"],
+    "fonts": ["Google Fonts: Inter", "Google Fonts: JetBrains Mono"],
+    "icons": "Font Awesome 6.4.0"
+  },
+  "design_philosophy": "Professional mission dashboard or secure data terminal aesthetic"
+}

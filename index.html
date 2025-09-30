@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Portfolio - Cloud DevOps & Cybersecurity Specialist">
+    <title>Security Terminal // Portfolio Dashboard</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config for Custom Theme -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'cloud-primary': '#4A90E2',
+                        'cloud-secondary': '#7BCFFF',
+                        'cloud-accent': '#50C878',
+                        'cyber-primary': '#00F5FF',
+                        'cyber-secondary': '#9D00FF',
+                        'cyber-accent': '#FF0080',
+                        'terminal-green': '#00FF41',
+                    },
+                    fontFamily: {
+                        'mono': ['JetBrains Mono', 'Courier New', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="font-['Inter'] bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo/Brand -->
+                <div class="flex items-center space-x-2">
+                    <span class="text-2xl font-mono font-bold text-cloud-primary dark:text-cyber-primary">
+                        <span class="hidden sm:inline">&gt;_</span> TERMINAL
+                    </span>
+                    <span class="hidden md:inline text-sm text-gray-500 dark:text-gray-400 font-mono">
+                        // access granted
+                    </span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#hero" class="nav-link text-sm font-medium hover:text-cloud-primary dark:hover:text-cyber-primary transition-colors">
+                        HOME
+                    </a>
+                    <a href="#about" class="nav-link text-sm font-medium hover:text-cloud-primary dark:hover:text-cyber-primary transition-colors">
+                        ABOUT
+                    </a>
+                    <a href="#projects" class="nav-link text-sm font-medium hover:text-cloud-primary dark:hover:text-cyber-primary transition-colors">
+                        OPERATIONS
+                    </a>
+                    <a href="#certifications" class="nav-link text-sm font-medium hover:text-cloud-primary dark:hover:text-cyber-primary transition-colors">
+                        CREDENTIALS
+                    </a>
+                    <a href="#contact" class="nav-link text-sm font-medium hover:text-cloud-primary dark:hover:text-cyber-primary transition-colors">
+                        CONTACT
+                    </a>
+                    <button id="resume-btn" class="px-4 py-2 bg-cloud-primary dark:bg-cyber-primary text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all">
+                        RESUME
+                    </button>
+                    
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 space-y-3">
+                <a href="#hero" class="block text-sm font-medium hover:text-cloud-primary dark:hover:text-cyber-primary transition-colors">
+                    HOME
+                </a>
+                <a href="#about" class="block text-sm font-medium hover:text-cloud-primary dark:hover:text-cyber-primary transition-colors">
+                    INTEL
+                </a>
+                <a href="#projects" class="block text-sm font-medium hover:text-cloud-primary dark:hover:text-cyber-primary transition-colors">
+                    OPERATIONS
+                </a>
+                <a href="#certifications" class="block text-sm font-medium hover:text-cloud-primary dark:hover:text-cyber-primary transition-colors">
+                    CREDENTIALS
+                </a>
+                <a href="#contact" class="block text-sm font-medium hover:text-cloud-primary dark:hover:text-cyber-primary transition-colors">
+                    CONTACT
+                </a>
+                <div class="flex items-center space-x-3 pt-2">
+                    <button id="resume-btn-mobile" class="flex-1 px-4 py-2 bg-cloud-primary dark:bg-cyber-primary text-white rounded-lg text-sm font-medium">
+                        VIEW DOSSIER
+                    </button>
+                    <button id="theme-toggle-mobile" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-800">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <!-- Background Effect Container -->
+        <div id="particles-container" class="absolute inset-0 z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
+            <div class="text-center space-y-6">
+                <!-- Status Badge -->
+                <div class="inline-flex items-center space-x-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-300 dark:border-green-700">
+                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <span class="text-sm font-mono text-green-700 dark:text-green-400">SYSTEM ONLINE</span>
+                </div>
+
+                <!-- Main Headline -->
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+                    <span class="text-gray-900 dark:text-white">SECURITY</span>
+                    <br>
+                    <span class="bg-gradient-to-r from-cloud-primary to-cloud-accent dark:from-cyber-primary dark:to-cyber-accent bg-clip-text text-transparent">
+                        TERMINAL
+                    </span>
+                </h1>
+
+                <!-- Subheadline -->
+                <div class="max-w-2xl mx-auto space-y-2">
+                    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium">
+                        Cloud Infrastructure & Cybersecurity Operations
+                    </p>
+                    <p class="text-base md:text-lg text-gray-500 dark:text-gray-400 font-mono">
+                        &gt; Specializing in secure cloud architecture and DevSecOps practices
+                    </p>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
+                    <a href="#projects" class="w-full sm:w-auto px-8 py-4 bg-cloud-primary dark:bg-cyber-primary text-white rounded-lg font-medium hover:shadow-xl transition-all transform hover:-translate-y-1">
+                        VIEW OPERATIONS
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-cloud-primary dark:border-cyber-primary text-cloud-primary dark:text-cyber-primary rounded-lg font-medium hover:bg-cloud-primary dark:hover:bg-cyber-primary hover:text-white transition-all">
+                        ESTABLISH CONTACT
+                    </a>
+                </div>
+
+                <!-- Scroll Indicator -->
+                <div class="pt-12 animate-bounce">
+                    <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (INTEL) -->
+    <section id="about" class="py-20 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="text-sm font-mono text-cloud-primary dark:text-cyber-primary uppercase tracking-wider">
+                    // CLEARANCE LEVEL: CLASSIFIED
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">
+                    AGENT INTEL
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cloud-primary to-cloud-accent dark:from-cyber-primary dark:to-cyber-accent mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- About Text -->
+                <div class="space-y-6">
+                    <div class="prose dark:prose-invert max-w-none">
+                        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                            Greetings, I'm a <span class="font-semibold text-cloud-primary dark:text-cyber-primary">Cloud Infrastructure Specialist</span> and <span class="font-semibold text-cloud-primary dark:text-cyber-primary">Security Operations Engineer</span> with a mission to build resilient, secure systems that operate at scale.
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            My operational expertise spans cloud architecture, DevSecOps implementation, and infrastructure automation. I believe in a security-first approach to every deployment, treating infrastructure as code and security as a continuous process.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 pt-4">
+                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium">
+                            Cloud Architecture
+                        </span>
+                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium">
+                            DevSecOps
+                        </span>
+                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium">
+                            Infrastructure as Code
+                        </span>
+                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium">
+                            Security Automation
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Skills Grid -->
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold mb-6">
+                        <i class="fas fa-code text-cloud-primary dark:text-cyber-primary mr-2"></i>
+                        TECHNICAL ARSENAL
+                    </h3>
+
+                    <!-- Languages -->
+                    <div class="skill-category">
+                        <h4 class="text-sm font-mono text-gray-500 dark:text-gray-400 uppercase mb-3">Languages</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">Bash</span>
+                            <span class="skill-badge">Go</span>
+                            <span class="skill-badge">SQL</span>
+                        </div>
+                    </div>
+
+                    <!-- Cloud & DevOps -->
+                    <div class="skill-category">
+                        <h4 class="text-sm font-mono text-gray-500 dark:text-gray-400 uppercase mb-3">Cloud & DevOps</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">AWS</span>
+                            <span class="skill-badge">Azure</span>
+                            <span class="skill-badge">Docker</span>
+                            <span class="skill-badge">Kubernetes</span>
+                            <span class="skill-badge">Terraform</span>
+                            <span class="skill-badge">Jenkins</span>
+                        </div>
+                    </div>
+
+                    <!-- Security Tools -->
+                    <div class="skill-category">
+                        <h4 class="text-sm font-mono text-gray-500 dark:text-gray-400 uppercase mb-3">Security Tools</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge">OWASP</span>
+                            <span class="skill-badge">Nmap</span>
+                            <span class="skill-badge">Wireshark</span>
+                            <span class="skill-badge">Metasploit</span>
+                            <span class="skill-badge">Snort</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section (OPERATIONS) -->
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="text-sm font-mono text-cloud-primary dark:text-cyber-primary uppercase tracking-wider">
+                    // MISSION FILES
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">
+                    ACTIVE OPERATIONS
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cloud-primary to-cloud-accent dark:from-cyber-primary dark:to-cyber-accent mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Project Filter Tabs -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="project-filter-btn active" data-filter="completed">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    COMPLETED
+                </button>
+                <button class="project-filter-btn" data-filter="in-progress">
+                    <i class="fas fa-spinner mr-2"></i>
+                    IN PROGRESS
+                </button>
+                <button class="project-filter-btn" data-filter="planned">
+                    <i class="fas fa-clock mr-2"></i>
+                    PLANNED
+                </button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projects will be injected here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="text-sm font-mono text-cloud-primary dark:text-cyber-primary uppercase tracking-wider">
+                    // VERIFIED CREDENTIALS
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">
+                    CERTIFICATIONS & TRAINING
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cloud-primary to-cloud-accent dark:from-cyber-primary dark:to-cyber-accent mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Certifications Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Certification cards will be added here -->
+                <div class="cert-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-certificate text-3xl text-cloud-primary dark:text-cyber-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-1">AWS Certified Solutions Architect</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Amazon Web Services</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">Issued: 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-shield-alt text-3xl text-cloud-primary dark:text-cyber-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-1">CompTIA Security+</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">CompTIA</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">Issued: 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-docker text-3xl text-cloud-primary dark:text-cyber-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-1">Certified Kubernetes Administrator</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">CNCF</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">Issued: 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="text-sm font-mono text-cloud-primary dark:text-cyber-primary uppercase tracking-wider">
+                    // SECURE CHANNEL
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">
+                    ESTABLISH CONTACT
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-cloud-primary to-cloud-accent dark:from-cyber-primary dark:to-cyber-accent mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="text-center space-y-8">
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    Looking to collaborate on a project or discuss opportunities in cloud infrastructure and security? 
+                    Feel free to reach out through any of these secure channels.
+                </p>
+
+                <!-- Social Links -->
+                <div class="flex flex-wrap justify-center gap-6 pt-8">
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fab fa-github text-2xl"></i>
+                        <span class="ml-3">GitHub</span>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                        <span class="ml-3">LinkedIn</span>
+                    </a>
+                    <a href="mailto:your.email@example.com" class="contact-link">
+                        <i class="fas fa-envelope text-2xl"></i>
+                        <span class="ml-3">Email</span>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" class="contact-link">
+                        <i class="fab fa-twitter text-2xl"></i>
+                        <span class="ml-3">Twitter</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <p class="text-sm text-gray-600 dark:text-gray-400 font-mono">
+                    &copy; 2025 Terminal by SAIKAT DAS :)
+                </p>
+                <p class="text-xs text-gray-500 dark:text-gray-500">
+                    Built with HTML, CSS, and JavaScript
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Resume Modal -->
+    <div id="resume-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="relative max-w-4xl w-full mx-4 bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-2xl font-bold font-mono">
+                    <i class="fas fa-file-alt text-cloud-primary dark:text-cyber-primary mr-2"></i>
+                    AGENT DOSSIER
+                </h3>
+                <button id="close-modal" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 max-h-[70vh] overflow-y-auto">
+                <div class="relative">
+                    <!-- Watermark -->
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10 dark:opacity-5">
+                        <p class="text-6xl font-bold transform -rotate-45 font-mono">CONFIDENTIAL</p>
+                    </div>
+                    
+                    <!-- Resume Image Placeholder -->
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded-lg aspect-[8.5/11] flex items-center justify-center">
+                        <div class="text-center space-y-4">
+                            <i class="fas fa-file-pdf text-6xl text-gray-400"></i>
+                            <p class="text-gray-600 dark:text-gray-400 font-mono">
+                                [Resume Image Will Be Displayed Here]
+                            </p>
+                            <p class="text-sm text-gray-500 dark:text-gray-500">
+                                Replace this placeholder with your resume image
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                <p class="text-sm text-gray-600 dark:text-gray-400 text-center font-mono">
+                    <i class="fas fa-lock mr-2"></i>
+                    This document is for viewing purposes only and cannot be downloaded.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
