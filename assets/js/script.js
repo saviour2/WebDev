@@ -127,6 +127,7 @@ const DOMElements = {
     
     // Resume Modal
     resumeBtn: null,
+    resumeBtnMobile: null,
     resumeModal: null,
     resumeCloseBtn: null,
     
@@ -168,6 +169,7 @@ function cacheDOMElements() {
     DOMElements.mobileMenuBtn = document.getElementById('mobile-menu-btn');
     DOMElements.mobileMenu = document.getElementById('mobile-menu');
     DOMElements.resumeBtn = document.getElementById('resume-btn');
+    DOMElements.resumeBtnMobile = document.getElementById('resume-btn-mobile');
     DOMElements.resumeModal = document.getElementById('resume-modal');
     DOMElements.resumeCloseBtn = document.getElementById('close-modal');
     DOMElements.projectTabs = document.querySelectorAll('.project-filter-btn');
@@ -306,8 +308,14 @@ function toggleMobileMenu() {
 // =====================================
 
 function initializeResumeModal() {
-    if (DOMElements.resumeBtn && DOMElements.resumeModal) {
-        DOMElements.resumeBtn.addEventListener('click', openResumeModal);
+    if (DOMElements.resumeModal) {
+        // Add event listeners for both desktop and mobile resume buttons
+        if (DOMElements.resumeBtn) {
+            DOMElements.resumeBtn.addEventListener('click', openResumeModal);
+        }
+        if (DOMElements.resumeBtnMobile) {
+            DOMElements.resumeBtnMobile.addEventListener('click', openResumeModal);
+        }
         
         if (DOMElements.resumeCloseBtn) {
             DOMElements.resumeCloseBtn.addEventListener('click', closeResumeModal);
