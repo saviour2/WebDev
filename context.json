@@ -1,8 +1,8 @@
 {
   "project_name": "Portfolio Website - Dual Theme",
-  "current_version": "1.4.1",
+  "current_version": "1.5.0",
   "last_updated": "2025-01-27",
-  "last_change": "Complete content customization with real CV data, 22 certificates, and authentic projects",
+  "last_change": "CV-based content overhaul with certificate categorization and simplified static deployment",
   "development_status": "enhanced",
   "completed_files": [
     "README.md",
@@ -54,6 +54,15 @@
     "Real Contact Info: Already contained authentic social links and contact details",
     "Technical Skills: Updated to reflect actual expertise in cloud platforms, DevOps tools, and security technologies",
     "Professional Branding: Enhanced to match actual Cloud DevOps & Cybersecurity specialization"
+  ],
+  "cv_based_updates_v1_5_0": [
+    "Certificate Organization: Added 6-category filtering system (Frontend, Backend, Cloud/DevOps, AI/ML, Cybersecurity, Professional)",
+    "Static Deployment Optimization: Removed certificate directory and database dependencies for reliable hosting",
+    "CV-Accurate Bio: Updated About section to reflect B.Tech IT student status, Google Student Ambassador role, IBM internship",
+    "Skills Alignment: Matched technical skills exactly to CV (Java, Python, C, HTML5, CSS3, JavaScript, MySQL, Git, GitHub, Google Cloud)",
+    "Authentic Projects: Replaced with actual CV projects (Portfolio Website, E-Commerce App, Current Roles)",
+    "Student-Focused Branding: Adjusted specialization tags and descriptions to match student profile",
+    "Performance Enhancement: Simplified JavaScript architecture for faster loading and better reliability"
   ],
   "completed_v1_4_1": [
     "✓ All certificates copied and organized in directory structure",

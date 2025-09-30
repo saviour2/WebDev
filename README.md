@@ -1,40 +1,49 @@
 # Portfolio Website - Changelog
 
-## Version 1.4.1 - Complete Content Customization
+## Version 1.5.0 - CV-Based Customization & Certificate Organization
 **Date:** 2025-01-27
 
-### Content Personalization Complete ✅
-- **About Section:** Updated with authentic Saikat Das bio and real professional specializations
-  - Cloud DevOps & Cybersecurity focus with actual experience descriptions
-  - Updated technical skills to reflect real expertise (GCP, Azure, AWS, IBM Cloud)
-  - Comprehensive programming languages and security tools inventory
-- **Resume Format Enhancement:** Switched from PDF embed to JPG image display
-  - Better browser compatibility and faster loading
-  - Maintained security watermark and viewing restrictions
-  - Improved mobile responsiveness for resume viewing
-- **Complete Certificate Integration:** Added all 22 real certificates
-  - **Google:** Cloud Technical Series 
-  - **Microsoft:** ASP.NET Core, React, MEAN Stack, HTML/CSS, Web Accessibility
-  - **IBM:** GitHub Fundamentals, Web Applications, SkillsBuild Orientation
-  - **Forage:** Deloitte Cybersecurity & Data Analytics virtual experiences
-  - **Infosys:** HTML5, CSS3, JavaScript, Email Writing, Time Management
-  - **Educational:** Scaler React Bootcamp, HP Life AI, College CTF Competition
-  - **Professional Development:** Let's Upgrade DSA & JavaScript, Outskill certification
-- **Authentic Project Portfolio:** Replaced placeholder projects with realistic Cloud DevOps work
-  - Multi-cloud infrastructure migration with quantified results
-  - Security-first DevOps pipeline with measurable security improvements
-  - Enterprise cloud security framework for 10K+ users
-  - Automated compliance system for SOC 2, ISO 27001, GDPR
-- **Real Contact Information:** Already contained authentic social media and professional links
+### Major Content Overhaul Based on Actual CV ✅
+- **Certificate Categorization System:** Added advanced filtering with 6 categories
+  - **Frontend:** HTML5, CSS3, JavaScript (Infosys), React (Microsoft/Scaler), Web Accessibility
+  - **Backend:** ASP.NET Core, MEAN Stack, GitHub, Web Apps, Data Structures & Algorithms
+  - **Cloud/DevOps:** Google Cloud Computing Foundations
+  - **AI/ML:** AI for Beginners (HP Life)
+  - **Cybersecurity:** Deloitte Cyber Experience, CTF Competition Achievement
+  - **Professional:** Data Analytics, Email Writing, Time Management, IBM Orientation
+- **Simplified Certificate System:** Removed database dependency for static deployment
+  - Eliminated certificate directory and dynamic loading
+  - Converted to hardcoded certificate cards for better performance
+  - Removed modal viewing system for streamlined experience
 
-### Technical Achievements
-- Zero placeholder content remaining - 100% authentic portfolio
-- Professional Cloud DevOps & Cybersecurity branding throughout
-- Comprehensive skill representation matching actual certifications
-- Production-ready with real professional information
+### CV-Accurate Content Updates ✅
+- **About Section:** Updated to reflect authentic student profile
+  - B.Tech Information Technology student with 8.82 SGPA
+  - Google Student Ambassador leadership role
+  - IBM SkillsBuild Front-End Development Internship experience
+  - Student-focused specialization tags
+- **Technical Skills:** Matched exactly to CV specifications
+  - **Languages:** Java, Python, C
+  - **Web Tech:** HTML5, CSS3, JavaScript
+  - **Databases & Tools:** MySQL, Git, GitHub, Google Cloud
+- **Project Portfolio:** Replaced with actual CV projects
+  - **Personal Portfolio Website:** HTML5/CSS3/JavaScript with GSAP animations
+  - **E-Commerce Application:** Java/JavaFX/MySQL desktop application
+  - **Google Student Ambassador Program:** Current leadership role
+  - **IBM SkillsBuild Internship:** 6-week intensive front-end program
 
-### Deployment Status: ✅ READY
-Portfolio is now fully customized and ready for professional deployment.
+### Technical Improvements
+- Enhanced certificate filtering with smooth animations
+- Optimized for static hosting without external dependencies
+- Improved performance with reduced JavaScript complexity
+- Maintained professional "Security Terminal" aesthetic while reflecting student status
+
+### Deployment Optimization
+- ✅ No external database requirements
+- ✅ All content hardcoded for reliable static hosting
+- ✅ Certificate categories with instant filtering
+- ✅ Mobile-responsive design maintained
+- ✅ CV-accurate and deployment-ready
 
 ---
 

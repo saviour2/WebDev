@@ -256,6 +256,58 @@ button:hover::before, a.button:hover::before {
     box-shadow: var(--glow-cyber);
 }
 
+/* Certificate Filter Buttons */
+.cert-filter-btn {
+    padding: 0.75rem 1.5rem;
+    background: white;
+    color: #64748b;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.dark .cert-filter-btn {
+    background: #1e293b;
+    color: #94a3b8;
+    border-color: #334155;
+}
+
+.cert-filter-btn:hover {
+    border-color: #4A90E2;
+    color: #4A90E2;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.dark .cert-filter-btn:hover {
+    border-color: #00F5FF;
+    color: #00F5FF;
+}
+
+.cert-filter-btn.active {
+    background: linear-gradient(135deg, #4A90E2, #50C878);
+    color: white;
+    border-color: transparent;
+    box-shadow: var(--glow-cloud);
+}
+
+.dark .cert-filter-btn.active {
+    background: linear-gradient(135deg, #00F5FF, #9D00FF);
+    box-shadow: var(--glow-cyber);
+}
+
+/* Certificate Card Filtering */
+.cert-card {
+    transition: var(--transition-smooth);
+}
+
+.cert-card.hidden {
+    display: none;
+}
+
 /* ===================================
    CARD STYLES
    =================================== */
