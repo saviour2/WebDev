@@ -582,6 +582,19 @@ button:hover::before, a.button:hover::before {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Resume Document Styles */
+.pdf-embed {
+    pointer-events: none;
+}
+
+.resume-image {
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 /* ===================================
    GRADIENT TEXT
    =================================== */

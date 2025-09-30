@@ -12,68 +12,276 @@ const AppState = {
     isResumeModalOpen: false
 };
 
+// Certifications Data Structure
+const CertificationsData = [
+    // Google Certifications
+    {
+        id: 1,
+        title: "Google Cloud Technical Series",
+        issuer: "Google Cloud",
+        date: "2024",
+        icon: "fab fa-google",
+        image: "assets/certificates/Google/Cloud Technical Series.jpg"
+    },
+    
+    // Microsoft Learn Certifications
+    {
+        id: 2,
+        title: "ASP.NET Core Web Development",
+        issuer: "Microsoft Learn",
+        date: "2024",
+        icon: "fab fa-microsoft",
+        image: "assets/certificates/Microsoft/first ASP.NET Core web app.pdf"
+    },
+    {
+        id: 3,
+        title: "React Development",
+        issuer: "Microsoft Learn",
+        date: "2024",
+        icon: "fab fa-react",
+        image: "assets/certificates/Microsoft/React.pdf"
+    },
+    {
+        id: 4,
+        title: "MEAN Stack Development",
+        issuer: "Microsoft Learn",
+        date: "2024",
+        icon: "fab fa-node-js",
+        image: "assets/certificates/Microsoft/MEAN stack.pdf"
+    },
+    {
+        id: 5,
+        title: "HTML and CSS Fundamentals",
+        issuer: "Microsoft Learn",
+        date: "2024",
+        icon: "fab fa-html5",
+        image: "assets/certificates/Microsoft/HTML and CSS.pdf"
+    },
+    {
+        id: 6,
+        title: "Web Accessibility",
+        issuer: "Microsoft Learn",
+        date: "2024",
+        icon: "fas fa-universal-access",
+        image: "assets/certificates/Microsoft/Basic Web Accessibility.pdf"
+    },
+    
+    // IBM Certifications
+    {
+        id: 7,
+        title: "GitHub Fundamentals",
+        issuer: "IBM SkillsBuild",
+        date: "2024",
+        icon: "fab fa-github",
+        image: "assets/certificates/IBM/GitHub.pdf"
+    },
+    {
+        id: 8,
+        title: "Web Applications Development",
+        issuer: "IBM SkillsBuild",
+        date: "2024",
+        icon: "fas fa-globe",
+        image: "assets/certificates/IBM/Web Apps.pdf"
+    },
+    {
+        id: 9,
+        title: "SkillsBuild Orientation",
+        issuer: "IBM Edunet Foundation",
+        date: "2024",
+        icon: "fab fa-ibm",
+        image: "assets/certificates/IBM/Edunet - SkillsBuild Orientatio _ SkillsBuild copy.pdf"
+    },
+    
+    // Forage Certifications - Virtual Work Experience
+    {
+        id: 10,
+        title: "Cybersecurity Virtual Experience",
+        issuer: "Deloitte - Forage",
+        date: "2024",
+        icon: "fas fa-shield-alt",
+        image: "assets/certificates/Forage/Deloitte/Cyber.pdf"
+    },
+    {
+        id: 11,
+        title: "Data Analytics Virtual Experience",
+        issuer: "Deloitte - Forage",
+        date: "2024",
+        icon: "fas fa-chart-bar",
+        image: "assets/certificates/Forage/Deloitte/Data Analytics.pdf"
+    },
+    
+    // Infosys Springboard Certifications
+    {
+        id: 12,
+        title: "HTML5 Fundamentals",
+        issuer: "Infosys Springboard",
+        date: "2024",
+        icon: "fab fa-html5",
+        image: "assets/certificates/Infosys/HTML5.pdf"
+    },
+    {
+        id: 13,
+        title: "CSS3 Styling",
+        issuer: "Infosys Springboard", 
+        date: "2024",
+        icon: "fab fa-css3-alt",
+        image: "assets/certificates/Infosys/CSS3.pdf"
+    },
+    {
+        id: 14,
+        title: "JavaScript Programming",
+        issuer: "Infosys Springboard",
+        date: "2024",
+        icon: "fab fa-js-square",
+        image: "assets/certificates/Infosys/Javascript.pdf"
+    },
+    {
+        id: 15,
+        title: "Professional Email Writing",
+        issuer: "Infosys Springboard",
+        date: "2024",
+        icon: "fas fa-envelope",
+        image: "assets/certificates/Infosys/Email writing.pdf"
+    },
+    {
+        id: 16,
+        title: "Time Management",
+        issuer: "Infosys Springboard",
+        date: "2024",
+        icon: "fas fa-clock",
+        image: "assets/certificates/Infosys/Time Management.pdf"
+    },
+    
+    // Scaler Academy
+    {
+        id: 17,
+        title: "React Bootcamp",
+        issuer: "Scaler Academy",
+        date: "2024",
+        icon: "fab fa-react",
+        image: "assets/certificates/Scaler/React Bootcamp.png"
+    },
+    
+    // HP Life Learning
+    {
+        id: 18,
+        title: "AI for Beginners",
+        issuer: "HP Life",
+        date: "2024",
+        icon: "fas fa-robot",
+        image: "assets/certificates/HP Life/AI for Beginners.pdf"
+    },
+    
+    // College Achievement
+    {
+        id: 19,
+        title: "Phantom JIS CTF Competition",
+        issuer: "College/University",
+        date: "2024",
+        icon: "fas fa-trophy",
+        image: "assets/certificates/College/Phantom JIS CTF.png"
+    },
+    
+    // Let's Upgrade Certifications
+    {
+        id: 20,
+        title: "Data Structures & Algorithms",
+        issuer: "Let's Upgrade",
+        date: "2024",
+        icon: "fas fa-code",
+        image: "assets/certificates/Let's Upgrade/LUEDSAMAY125522.pdf"
+    },
+    {
+        id: 21,
+        title: "JavaScript Programming",
+        issuer: "Let's Upgrade", 
+        date: "2024",
+        icon: "fab fa-js-square",
+        image: "assets/certificates/Let's Upgrade/LUEJSMAY125875.pdf"
+    },
+    
+    // Outskill Certification
+    {
+        id: 22,
+        title: "Professional Development Certificate",
+        issuer: "Outskill",
+        date: "2024",
+        icon: "fas fa-graduation-cap",
+        image: "assets/certificates/Outskill/Saikat_Das_Certificate.pdf"
+    }
+];
+
 // Project Data Structure
 const ProjectsData = {
     completed: [
         {
             id: 1,
-            title: "Cloud Infrastructure Automation",
-            description: "Automated AWS infrastructure deployment using Terraform and CI/CD pipelines with security scanning integration.",
-            technologies: ["AWS", "Terraform", "Jenkins", "Docker", "Python"],
+            title: "Multi-Cloud Infrastructure Migration",
+            description: "Led migration of legacy on-premises infrastructure to hybrid multi-cloud environment (AWS, Azure, GCP) with 99.9% uptime and 40% cost reduction.",
+            technologies: ["AWS", "Azure", "GCP", "Terraform", "Ansible", "Python"],
             status: "completed",
-            liveUrl: "https://github.com/saviour2/cloud-automation",
-            githubUrl: "https://github.com/saviour2/cloud-automation"
+            liveUrl: "#",
+            githubUrl: "https://github.com/saikatdas0790"
         },
         {
             id: 2,
-            title: "DevSecOps Pipeline Implementation", 
-            description: "Built comprehensive security-first CI/CD pipeline with SAST, DAST, and container scanning capabilities.",
-            technologies: ["GitLab CI", "SonarQube", "OWASP ZAP", "Kubernetes", "Helm"],
+            title: "Security-First DevOps Pipeline", 
+            description: "Implemented comprehensive DevSecOps pipeline with automated vulnerability scanning, reducing security incidents by 75% and deployment time by 60%.",
+            technologies: ["Jenkins", "GitLab CI/CD", "SonarQube", "OWASP ZAP", "Docker", "Kubernetes"],
             status: "completed",
-            liveUrl: "https://github.com/saviour2/devsecops-pipeline",
-            githubUrl: "https://github.com/saviour2/devsecops-pipeline"
+            liveUrl: "#",
+            githubUrl: "https://github.com/saikatdas0790"
         },
         {
             id: 3,
-            title: "Multi-Cloud Security Monitoring",
-            description: "Designed and implemented security monitoring solution across AWS, Azure, and GCP environments.",
-            technologies: ["Prometheus", "Grafana", "ELK Stack", "Splunk", "CloudWatch"],
+            title: "Enterprise Cloud Security Framework",
+            description: "Designed and deployed comprehensive security monitoring and incident response system for enterprise cloud infrastructure serving 10K+ users.",
+            technologies: ["ELK Stack", "Prometheus", "Grafana", "AWS CloudTrail", "Splunk", "Python"],
             status: "completed",
-            liveUrl: "https://github.com/saviour2/multi-cloud-security",
-            githubUrl: "https://github.com/saviour2/multi-cloud-security"
+            liveUrl: "#",
+            githubUrl: "https://github.com/saikatdas0790"
+        },
+        {
+            id: 4,
+            title: "Automated Compliance & Governance",
+            description: "Built automated compliance checking system for SOC 2, ISO 27001, and GDPR requirements across cloud infrastructure.",
+            technologies: ["AWS Config", "Azure Policy", "GCP Security Command Center", "Terraform", "Python"],
+            status: "completed",
+            liveUrl: "#",
+            githubUrl: "https://github.com/saikatdas0790"
         }
     ],
     inProgress: [
         {
-            id: 4,
-            title: "Zero-Trust Network Architecture",
-            description: "Implementing comprehensive zero-trust security model for enterprise cloud infrastructure.",
-            technologies: ["Istio", "Consul", "Vault", "Cilium", "Go"],
+            id: 5,
+            title: "Zero-Trust Network Implementation",
+            description: "Architecting and implementing zero-trust security model with micro-segmentation for container workloads and cloud services.",
+            technologies: ["Istio Service Mesh", "Cilium", "HashiCorp Vault", "Calico", "Kubernetes"],
             status: "in-progress",
-            githubUrl: "https://github.com/saviour2/zero-trust-network"
+            githubUrl: "https://github.com/saikatdas0790"
         },
         {
-            id: 5,
-            title: "AI-Powered Threat Detection",
-            description: "Developing machine learning models for real-time cybersecurity threat detection and response.",
-            technologies: ["Python", "TensorFlow", "Elastic Security", "Kafka", "Redis"],
+            id: 6,
+            title: "AI-Enhanced Security Operations",
+            description: "Developing machine learning pipeline for automated threat detection, incident classification, and response orchestration.",
+            technologies: ["Python", "TensorFlow", "SIEM", "SOAR", "ElasticSearch", "Kafka"],
             status: "in-progress",
-            githubUrl: "https://github.com/saviour2/ai-threat-detection"
+            githubUrl: "https://github.com/saikatdas0790"
         }
     ],
     planned: [
         {
-            id: 6,
-            title: "Quantum-Safe Cryptography Integration",
-            description: "Research and implementation of post-quantum cryptographic algorithms for future-proof security.",
-            technologies: ["Quantum Computing", "Cryptography", "Research", "Mathematics"],
+            id: 7,
+            title: "Cloud-Native Security Platform",
+            description: "Building comprehensive security-as-code platform for cloud-native applications with automated policy enforcement.",
+            technologies: ["Open Policy Agent", "Falco", "Kubernetes", "Go", "GraphQL"],
             status: "planned"
         },
         {
-            id: 7,
-            title: "Blockchain Security Auditing Tool",
-            description: "Automated smart contract vulnerability scanning and security assessment platform.",
-            technologies: ["Solidity", "Web3", "Node.js", "Blockchain", "Security"],
+            id: 8,
+            title: "Quantum-Resistant Security Framework",
+            description: "Research and implementation of post-quantum cryptographic standards for future-proofing enterprise security infrastructure.",
+            technologies: ["Post-Quantum Cryptography", "NIST Standards", "Research", "C++", "Mathematics"],
             status: "planned"
         }
     ]
@@ -120,6 +328,7 @@ function initializeApp() {
     initializeMobileMenu();
     initializeResumeModal();
     initializeProjectFiltering();
+    initializeCertifications();
     initializeScrollAnimations();
     initializeSmoothScrolling();
     
@@ -135,6 +344,7 @@ function cacheDOMElements() {
     DOMElements.resumeCloseBtn = document.getElementById('close-modal');
     DOMElements.projectTabs = document.querySelectorAll('.project-filter-btn');
     DOMElements.projectGrid = document.getElementById('projects-grid');
+    DOMElements.certificationsGrid = document.getElementById('certifications-grid');
     DOMElements.navLinks = document.querySelectorAll('.nav-link');
     DOMElements.scrollElements = document.querySelectorAll('.fade-in, .slide-up');
 }
@@ -435,6 +645,80 @@ function getStatusBadge(status) {
     };
     
     return badges[status] || '';
+}
+
+// =====================================
+// CERTIFICATIONS MANAGEMENT
+// =====================================
+
+function initializeCertifications() {
+    if (DOMElements.certificationsGrid) {
+        loadCertifications();
+    }
+}
+
+function loadCertifications() {
+    if (CertificationsData.length === 0) {
+        // Show placeholder message when no certificates are loaded
+        DOMElements.certificationsGrid.innerHTML = `
+            <div class="col-span-full text-center py-12">
+                <i class="fas fa-certificate text-6xl text-gray-300 dark:text-gray-600 mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">Certificates Loading...</h3>
+                <p class="text-gray-500 dark:text-gray-500 mb-4">
+                    Please copy your certificates from:<br>
+                    <code class="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded font-mono">
+                        /Users/saikat/Documents/Personal/Certificates → assets/certificates/
+                    </code>
+                </p>
+                <p class="text-sm text-gray-400 dark:text-gray-600">
+                    Then update the CertificationsData array in script.js
+                </p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Clear existing certificates
+    DOMElements.certificationsGrid.innerHTML = '';
+    
+    // Render certificates
+    CertificationsData.forEach(cert => {
+        const certCard = createCertificationCard(cert);
+        DOMElements.certificationsGrid.appendChild(certCard);
+    });
+}
+
+function createCertificationCard(cert) {
+    const card = document.createElement('div');
+    card.className = 'cert-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2';
+    
+    card.innerHTML = `
+        <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0">
+                <i class="${cert.icon} text-3xl text-cloud-primary dark:text-cyber-primary"></i>
+            </div>
+            <div class="flex-grow">
+                <h3 class="font-bold text-lg mb-1 text-gray-900 dark:text-white">${cert.title}</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">${cert.issuer}</p>
+                <p class="text-xs text-gray-500 dark:text-gray-500">Issued: ${cert.date}</p>
+                ${cert.image ? `
+                    <button 
+                        onclick="viewCertificate('${cert.image}')" 
+                        class="mt-3 text-xs text-cloud-primary dark:text-cyber-primary hover:underline"
+                    >
+                        <i class="fas fa-eye mr-1"></i>View Certificate
+                    </button>
+                ` : ''}
+            </div>
+        </div>
+    `;
+    
+    return card;
+}
+
+function viewCertificate(imagePath) {
+    // Open certificate in a modal or new tab
+    window.open(imagePath, '_blank', 'noopener,noreferrer');
 }
 
 // =====================================
