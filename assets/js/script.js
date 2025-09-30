@@ -784,6 +784,7 @@ function initializeResumeProtection() {
     
     // Set initial properties
     resumeImage.draggable = false;
+    resumeImage.style.pointerEvents = 'auto'; // Ensure mouse events work
     
     // Disable right-click context menu (but don't block mousedown)
     resumeContainer.addEventListener('contextmenu', (e) => {
@@ -795,35 +796,58 @@ function initializeResumeProtection() {
         e.preventDefault();
     });
     
-    // Simple drag functionality for zoomed images
-    resumeImage.addEventListener('mousedown', function(e) {
-        console.log('🖱️ Mouse down - Zoom:', currentZoom);
-        if (currentZoom > 1) {
-            isDragging = true;
-            dragStart.x = e.clientX - imagePosition.x;
-            dragStart.y = e.clientY - imagePosition.y;
-            console.log('✅ Drag started at:', dragStart);
-            e.preventDefault();
+    // Simplified and robust drag functionality
+    let dragHandler = {
+        handleMouseDown: function(e) {
+            if (currentZoom > 1) {
+                isDragging = true;
+                dragStart.x = e.clientX - imagePosition.x;
+                dragStart.y = e.clientY - imagePosition.y;
+                resumeImage.style.cursor = 'grabbing';
+                resumeContainer.style.userSelect = 'none';
+                console.log('🟢 Drag started:', { zoom: currentZoom, start: dragStart });
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        },
+        
+        handleMouseMove: function(e) {
+            if (isDragging && currentZoom > 1) {
+                imagePosition.x = e.clientX - dragStart.x;
+                imagePosition.y = e.clientY - dragStart.y;
+                
+                // Apply reasonable constraints
+                const maxMove = 150;
+                imagePosition.x = Math.max(-maxMove, Math.min(maxMove, imagePosition.x));
+                imagePosition.y = Math.max(-maxMove, Math.min(maxMove, imagePosition.y));
+                
+                // Direct transform application for immediate response
+                resumeImage.style.transform = `translate(${imagePosition.x}px, ${imagePosition.y}px) scale(${currentZoom})`;
+                resumeImage.style.transition = 'none';
+                
+                console.log('🔄 Dragging:', imagePosition);
+                e.preventDefault();
+            }
+        },
+        
+        handleMouseUp: function(e) {
+            if (isDragging) {
+                isDragging = false;
+                resumeContainer.style.userSelect = '';
+                if (currentZoom > 1) {
+                    resumeImage.style.cursor = 'grab';
+                } else {
+                    resumeImage.style.cursor = 'default';
+                }
+                console.log('🔴 Drag ended at:', imagePosition);
+            }
         }
-    });
+    };
     
-    // Use window events for better capture
-    window.addEventListener('mousemove', function(e) {
-        if (isDragging && currentZoom > 1) {
-            imagePosition.x = e.clientX - dragStart.x;
-            imagePosition.y = e.clientY - dragStart.y;
-            console.log('🔄 Dragging to:', imagePosition);
-            applyZoom();
-            e.preventDefault();
-        }
-    });
-    
-    window.addEventListener('mouseup', function(e) {
-        if (isDragging) {
-            console.log('🛑 Drag ended');
-            isDragging = false;
-        }
-    });
+    // Remove any existing listeners and add new ones
+    resumeImage.addEventListener('mousedown', dragHandler.handleMouseDown);
+    document.addEventListener('mousemove', dragHandler.handleMouseMove);
+    document.addEventListener('mouseup', dragHandler.handleMouseUp);
     
     // Disable keyboard shortcuts for saving/copying
     document.addEventListener('keydown', (e) => {
@@ -889,20 +913,28 @@ function initializeResumeProtection() {
 function applyZoom() {
     const resumeImage = document.getElementById('resume-image');
     if (resumeImage) {
-        const transform = `translate(${imagePosition.x}px, ${imagePosition.y}px) scale(${currentZoom})`;
-        resumeImage.style.transform = transform;
-        resumeImage.style.transformOrigin = 'center center';
+        // Only apply transform if we're not actively dragging (to avoid conflicts)
+        if (!isDragging) {
+            const transform = `translate(${imagePosition.x}px, ${imagePosition.y}px) scale(${currentZoom})`;
+            resumeImage.style.transform = transform;
+            resumeImage.style.transformOrigin = 'center center';
+            resumeImage.style.transition = 'transform 0.3s ease';
+        }
         
-        // Simple cursor management
+        // Cursor and behavior management
         if (currentZoom > 1) {
             resumeImage.style.cursor = isDragging ? 'grabbing' : 'grab';
         } else {
             resumeImage.style.cursor = 'default';
-            imagePosition.x = 0;
-            imagePosition.y = 0;
+            // Reset position when zoomed out completely
+            if (currentZoom === 1) {
+                imagePosition.x = 0;
+                imagePosition.y = 0;
+                resumeImage.style.transform = `translate(0px, 0px) scale(1)`;
+            }
         }
         
-        console.log('📏 Applied - Zoom:', currentZoom, 'Position:', imagePosition.x, imagePosition.y);
+        console.log('📏 Zoom applied:', { zoom: currentZoom, position: imagePosition, dragging: isDragging });
     }
 }
 

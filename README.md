@@ -1,36 +1,46 @@
-# Personal Portfolio Website v1.5.5
+# Personal Portfolio Website
 
-A modern, responsive portfolio website showcasing technical skills, projects, and professional certifications with a sleek "Security Terminal" aesthetic. Features enhanced security measures and optimized layout.
+A responsive portfolio website showcasing my technical skills, academic projects, and professional certifications. Built with vanilla HTML, CSS, and JavaScript with a dual-theme design system for internship submission.
 
-## 🚀 Live Demo
-Visit the live portfolio: [Portfolio Website](https://saviour2.github.io/WebDev/)
+## Project Overview
 
-## ✨ Features
+This portfolio website presents my academic and professional background in a modern, interactive format. It features a dual-theme system with Cloud/DevOps (light mode) and Cybersecurity (dark mode) aesthetics to reflect my technical specializations.
 
-### 🎨 Design & UX
-- **Dual Theme System:** Cloud (Light) and Cybersecurity (Dark) modes
-- **Professional Aesthetics:** Security terminal-inspired design with glassmorphism effects
-- **Responsive Design:** Optimized for desktop, tablet, and mobile devices
-- **Smooth Animations:** Scroll-based fade-ins, hover effects, and transitions
-- **Accessibility Compliant:** WCAG guidelines with ARIA labels and reduced motion support
+## Website Sections
 
-### 📋 Content Sections
-- **Hero Section:** Dynamic introduction with animated background
-- **About (INTEL):** Student profile with academic achievements and specializations
-- **Projects (OPERATIONS):** Filterable project showcase with technology badges
-- **Certifications:** 6-category filtering system (Frontend, Backend, Cloud/DevOps, AI/ML, Cybersecurity, Professional)
-- **Contact:** Social media links and professional connections
+### Hero Section
+Dynamic introduction with theme toggle and animated background effects.
 
-### 🛠 Technical Features
-- **Static Deployment:** No external dependencies or databases required
-- **Certificate System:** Hardcoded certificate cards with instant category filtering
-- **Secure Resume Viewer:** Protected resume modal with zoom functionality and right-click protection
-- **Enhanced Security:** XSS protection, input sanitization, and secure DOM manipulation
-- **Optimized Layout:** Narrower project cards with improved grid system for better readability
-- **Performance Optimized:** Hardware-accelerated animations and efficient rendering
-- **Cross-Browser Compatible:** Works on Chrome, Firefox, Safari, and Edge
+### About Section (INTEL)
+Professional summary highlighting my academic background as a B.Tech IT student, Google Student Ambassador role, and technical specializations in Cloud DevOps and Cybersecurity.
 
-## 🏗 Project Structure
+### Projects Section (OPERATIONS)
+Interactive project showcase with three filterable categories:
+- **Completed:** Finished projects with live demos and GitHub links
+- **In Progress:** Currently developing projects with progress updates
+- **Planned:** Upcoming projects with detailed descriptions and tech stacks
+
+### Certifications Section
+Comprehensive display of 22+ professional certificates organized by categories:
+- Frontend Development
+- Backend Development
+- Cloud/DevOps
+- AI/ML
+- Cybersecurity
+- Professional Skills
+
+### Contact Section
+Professional contact information and social media links for networking.
+
+## Technical Implementation
+
+- **Frontend:** HTML5, CSS3, JavaScript ES6+
+- **Styling:** Tailwind CSS framework with custom animations
+- **Icons:** Font Awesome 6.4.0
+- **Security:** XSS protection and input sanitization
+- **Features:** Theme persistence, smooth scrolling, responsive design
+
+## Project Structure
 
 ```
 portfolio2/
@@ -46,133 +56,18 @@ portfolio2/
 └── README.md             # Project documentation
 ```
 
-## 🚀 Quick Start
+## Key Features
 
-### Prerequisites
-- Modern web browser
-- Web server (for local development) or static hosting service
-
-### Local Development
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/saviour2/WebDev.git
-   cd WebDev
-   ```
-
-2. Open with a local server:
-   ```bash
-   # Using Python
-   python -m http.server 8000
-   
-   # Using Node.js
-   npx serve .
-   
-   # Or simply open index.html in your browser
-   ```
-
-3. Navigate to `http://localhost:8000` (or your server's address)
-
-### Deployment
-This is a static website that can be deployed to any web hosting service:
-- **GitHub Pages** (recommended)
-- Netlify
-- Vercel
-- Any traditional web hosting
-
-## 🛠 Tech Stack
-
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript
-- **Styling:** Tailwind CSS (CDN) + Custom CSS
-- **Icons:** Font Awesome 6.4.0
-- **Fonts:** Inter (UI), JetBrains Mono (Code)
-- **Animations:** Custom CSS keyframes and transitions
-- **Security:** Input sanitization, XSS protection, secure DOM methods
-
-## 🔒 Security Features
-
-- **Input Sanitization:** All user inputs and project data are sanitized before rendering
-- **XSS Protection:** Secure DOM manipulation using createElement instead of innerHTML
-- **Resume Protection:** Right-click disabled, drag prevention, and keyboard shortcut blocking
-- **URL Validation:** All external links validated before rendering
-- **Secure Modal:** Zoom-enabled resume viewer with comprehensive protection measures
-
-## 🎯 Key Highlights
-
-### 📚 Educational Background
-- **B.Tech Information Technology** - 8.82 SGPA
-- **Google Student Ambassador** - Leadership role in developer community
-- **IBM SkillsBuild Internship** - 6-week intensive front-end development program
-
-### 🏆 Certification Categories
-- **Frontend Development:** HTML5, CSS3, JavaScript, React, Web Accessibility
-- **Backend Development:** ASP.NET Core, MEAN Stack, Data Structures & Algorithms
-- **Cloud & DevOps:** Google Cloud Computing Foundations
-- **AI/ML:** Artificial Intelligence for Beginners
-- **Cybersecurity:** Deloitte Cyber Experience, CTF Competitions
-- **Professional Skills:** Data Analytics, Communication, Time Management
-
-### 🚀 Featured Projects
-- **Personal Portfolio Website:** Modern responsive design with advanced animations
-- **E-Commerce Desktop Application:** Java/JavaFX with MySQL database
-- **Google Student Ambassador Activities:** Community leadership and event management
-- **IBM SkillsBuild Certification Program:** Comprehensive front-end development training
-
-## 🔧 Customization
-
-### Adding New Certificates
-1. Open `index.html`
-2. Locate the certificates section
-3. Add new certificate cards following the existing HTML structure
-4. Update the category filter if needed
-
-### Modifying Content
-- **Personal Info:** Update the About section in `index.html`
-- **Projects:** Modify the projects array in `assets/js/script.js`
-- **Styling:** Customize colors and themes in `assets/css/style.css`
-- **Resume:** Replace the PDF file in `assets/Files/` directory
-
-### Theme Customization
-The website supports dual themes with CSS variables:
-```css
-:root {
-  --primary-color: #your-color;
-  --secondary-color: #your-color;
-  --accent-color: #your-color;
-}
-```
-
-## 📱 Browser Support
-
-| Browser | Version | Status |
-|---------|---------|--------|
-| Chrome  | 70+     | ✅ Full Support |
-| Firefox | 65+     | ✅ Full Support |
-| Safari  | 12+     | ✅ Full Support |
-| Edge    | 79+     | ✅ Full Support |
-
-## 🤝 Contributing
-
-While this is a personal portfolio, suggestions and improvements are welcome:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 📧 Contact
-
-- **Email:** [Your Email]
-- **LinkedIn:** [Your LinkedIn Profile]
-- **GitHub:** [saviour2](https://github.com/saviour2)
-- **Portfolio:** [Live Website](https://saviour2.github.io/WebDev/)
+- Responsive design optimized for all devices
+- Dual-theme system with smooth transitions
+- Interactive project filtering and categorization
+- Secure resume viewer with zoom functionality
+- Comprehensive security measures and XSS protection
+- Smooth animations and modern UI/UX design
 
 ---
 
-## 📈 Performance Metrics
+**Created by Saikat Das for Internship Portfolio Submission**
 
 - **Lighthouse Score:** 95+ (Performance, Accessibility, Best Practices, SEO)
 - **Load Time:** < 2 seconds on standard broadband
@@ -181,4 +76,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-*Built with ❤️ using modern web technologies*
+*Built with  using modern web technologies*

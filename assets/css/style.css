@@ -696,11 +696,12 @@ button:hover::before, a.button:hover::before {
 }
 
 .resume-image {
-    pointer-events: none;
+    pointer-events: auto; /* Allow mouse interactions for zoom and drag */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    cursor: default;
 }
 
 /* ===================================
