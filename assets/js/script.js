@@ -25,7 +25,7 @@ const ProjectsData = {
             technologies: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
             status: "completed",
             imageUrl: "assets/Files/Terminal_Portfolio.png",
-            liveUrl: "https://saviour2.github.io/WebDev/",
+            liveUrl: "https://terminalv1.pages.dev/",
             githubUrl: "https://github.com/saviour2/WebDev"
         }
     ],
