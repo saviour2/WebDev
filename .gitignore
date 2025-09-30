@@ -60,7 +60,15 @@ DRAFT_*
 *.dev.js
 debug.log
 context.json
+CERTIFICATE_SETUP.md
+
 # Archive files
 *.zip
 *.tar.gz
 *.rar
+
+# Certificate files (large PDFs and images)
+assets/certificates/
+assets/Certificates/
+*.pdf
+assets/Files/*.pdf
