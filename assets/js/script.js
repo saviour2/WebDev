@@ -965,15 +965,230 @@ console.log(`
 ║                      ACCESS GRANTED                          ║
 ║                                                              ║
 ║  This is a secure system. All activities are monitored.      ║
-║  Portfolio Version: 1.5.0                                    ║
+║  Portfolio Version: 1.6.2                                    ║
 ║  Made with love and care by Saikat :3                        ║
 ╚══════════════════════════════════════════════════════════════╝
 `);
+
+// =====================================
+// PARTICLE SYSTEM & PARALLAX EFFECTS
+// =====================================
+
+class ParticleSystem {
+    constructor() {
+        this.canvas = document.getElementById('particles-canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.animationId = null;
+        
+        this.init();
+    }
+    
+    init() {
+        this.resize();
+        this.createParticles();
+        this.animate();
+        
+        window.addEventListener('resize', () => this.resize());
+        document.addEventListener('scroll', () => this.handleScroll());
+    }
+    
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+    
+    createParticles() {
+        const particleCount = Math.min(50, Math.floor((window.innerWidth * window.innerHeight) / 15000));
+        
+        for (let i = 0; i < particleCount; i++) {
+            this.particles.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                size: Math.random() * 2 + 0.5,
+                speedX: (Math.random() - 0.5) * 0.5,
+                speedY: (Math.random() - 0.5) * 0.5,
+                opacity: Math.random() * 0.5 + 0.2,
+                color: this.getParticleColor()
+            });
+        }
+    }
+    
+    getParticleColor() {
+        const isDark = document.documentElement.classList.contains('dark');
+        const colors = isDark 
+            ? ['rgba(0, 245, 255, ', 'rgba(157, 0, 255, ', 'rgba(255, 0, 128, ']
+            : ['rgba(74, 144, 226, ', 'rgba(123, 207, 255, ', 'rgba(80, 200, 120, '];
+        
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+    
+    handleScroll() {
+        const scrollY = window.scrollY;
+        const scrollSpeed = scrollY * 0.5;
+        
+        // Update particles based on scroll
+        this.particles.forEach(particle => {
+            particle.y -= scrollSpeed * 0.001;
+            if (particle.y < -10) particle.y = this.canvas.height + 10;
+            if (particle.y > this.canvas.height + 10) particle.y = -10;
+        });
+        
+        // Parallax background elements
+        const bg1 = document.getElementById('parallax-bg1');
+        const bg2 = document.getElementById('parallax-bg2');
+        const bg3 = document.getElementById('parallax-bg3');
+        
+        if (bg1) bg1.style.transform = `translateY(${scrollY * 0.2}px) translateX(${Math.sin(scrollY * 0.001) * 20}px)`;
+        if (bg2) bg2.style.transform = `translateY(${scrollY * 0.15}px) translateX(${Math.cos(scrollY * 0.001) * 15}px)`;
+        if (bg3) bg3.style.transform = `translateY(${scrollY * 0.1}px) translateX(${Math.sin(scrollY * 0.0015) * 25}px)`;
+    }
+    
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        this.particles.forEach(particle => {
+            // Update position
+            particle.x += particle.speedX;
+            particle.y += particle.speedY;
+            
+            // Wrap around edges
+            if (particle.x < 0) particle.x = this.canvas.width;
+            if (particle.x > this.canvas.width) particle.x = 0;
+            if (particle.y < 0) particle.y = this.canvas.height;
+            if (particle.y > this.canvas.height) particle.y = 0;
+            
+            // Draw particle
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+            this.ctx.fillStyle = particle.color + particle.opacity + ')';
+            this.ctx.fill();
+            
+            // Add glow effect
+            this.ctx.shadowColor = particle.color + '0.8)';
+            this.ctx.shadowBlur = 10;
+            this.ctx.fill();
+            this.ctx.shadowBlur = 0;
+        });
+        
+        this.animationId = requestAnimationFrame(() => this.animate());
+    }
+    
+    updateTheme() {
+        this.particles.forEach(particle => {
+            particle.color = this.getParticleColor();
+        });
+    }
+}
+
+// Scroll Animation Observer
+class ScrollAnimations {
+    constructor() {
+        this.observer = new IntersectionObserver(
+            (entries) => this.handleIntersection(entries),
+            { 
+                threshold: [0, 0.25, 0.5, 0.75, 1.0], 
+                rootMargin: '-10% 0px -10% 0px' 
+            }
+        );
+        
+        this.init();
+    }
+    
+    init() {
+        // Wait for DOM to be fully loaded
+        setTimeout(() => {
+            // Find and observe elements with animation classes
+            const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+            console.log('Found animated elements:', animatedElements.length);
+            
+            animatedElements.forEach(el => {
+                // Ensure elements start invisible (except hero elements)
+                if (!el.closest('#hero')) {
+                    el.classList.remove('animate');
+                }
+                this.observer.observe(el);
+            });
+            
+            // Observe skill badges and cards separately
+            document.querySelectorAll('.skill-badge, .project-card, .cert-card').forEach(el => {
+                if (!el.classList.contains('scale-in')) {
+                    el.classList.add('scale-in');
+                }
+                el.classList.remove('animate'); // Start invisible
+                this.observer.observe(el);
+            });
+        }, 100);
+    }
+    
+    handleIntersection(entries) {
+        entries.forEach(entry => {
+            const element = entry.target;
+            const isHeroElement = element.closest('#hero');
+            
+            // Skip hero elements - they should always be visible
+            if (isHeroElement) return;
+            
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+                // Element is sufficiently visible, fade in
+                console.log('Fading in:', element.className);
+                element.classList.add('animate');
+                
+                // Add stagger effect for child elements
+                const children = element.querySelectorAll('.skill-badge, .project-card, .cert-card');
+                children.forEach((child, index) => {
+                    setTimeout(() => {
+                        child.classList.add('animate');
+                    }, index * 100);
+                });
+                
+            } else if (!entry.isIntersecting) {
+                // Element is not visible, fade out
+                console.log('Fading out:', element.className);
+                element.classList.remove('animate');
+                
+                // Remove animate from children too
+                const children = element.querySelectorAll('.skill-badge, .project-card, .cert-card');
+                children.forEach(child => {
+                    child.classList.remove('animate');
+                });
+            }
+        });
+    }
+}
+
+// Initialize Effects
+let particleSystem;
+let scrollAnimations;
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Mark body as loaded for CSS
+    document.body.classList.add('loaded');
+    
+    // Initialize particle system
+    particleSystem = new ParticleSystem();
+    
+    // Initialize scroll animations after a brief delay
+    setTimeout(() => {
+        scrollAnimations = new ScrollAnimations();
+    }, 500);
+    
+    // Update particles when theme changes
+    const originalToggleTheme = toggleTheme;
+    toggleTheme = function() {
+        originalToggleTheme();
+        if (particleSystem) {
+            setTimeout(() => particleSystem.updateTheme(), 300);
+        }
+    };
+});
 
 // Export for potential future module usage
 window.SecurityTerminal = {
     AppState,
     ProjectsData,
     toggleTheme,
-    switchProjectFilter
+    switchProjectFilter,
+    ParticleSystem,
+    ScrollAnimations
 };

@@ -52,6 +52,18 @@
 </head>
 <body class="font-['Inter'] bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
 
+    <!-- Floating Particles Background -->
+    <div id="particles-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <canvas id="particles-canvas" class="w-full h-full"></canvas>
+    </div>
+
+    <!-- Parallax Background Elements -->
+    <div class="fixed inset-0 pointer-events-none z-0 opacity-20 dark:opacity-10">
+        <div id="parallax-bg1" class="absolute w-32 h-32 rounded-full bg-gradient-to-r from-cloud-primary/20 to-cloud-accent/20 dark:from-cyber-primary/20 dark:to-cyber-accent/20 blur-xl"></div>
+        <div id="parallax-bg2" class="absolute w-24 h-24 rounded-full bg-gradient-to-r from-cloud-accent/30 to-cloud-secondary/30 dark:from-cyber-accent/30 dark:to-cyber-secondary/30 blur-lg"></div>
+        <div id="parallax-bg3" class="absolute w-40 h-40 rounded-full bg-gradient-to-r from-cloud-secondary/15 to-cloud-primary/15 dark:from-cyber-secondary/15 dark:to-cyber-primary/15 blur-2xl"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
         <div class="max-w-7xl mx-auto px-6 py-4">
@@ -83,7 +95,7 @@
                     <a href="#contact" class="nav-link text-sm font-medium hover:text-cloud-primary dark:hover:text-cyber-primary transition-colors">
                         CONTACT
                     </a>
-                    <button id="resume-btn" class="px-4 py-2 bg-cloud-primary dark:bg-cyber-primary text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all">
+                    <button id="resume-btn" class="px-4 py-2 bg-cloud-primary dark:bg-cyber-primary text-white rounded-lg text-sm font-medium hover:shadow-lg transition-all glow-on-hover">
                         RESUME
                     </button>
                     
@@ -118,8 +130,8 @@
                     CONTACT
                 </a>
                 <div class="flex items-center space-x-3 pt-2">
-                    <button id="resume-btn-mobile" class="flex-1 px-4 py-2 bg-cloud-primary dark:bg-cyber-primary text-white rounded-lg text-sm font-medium">
-                        VIEW DOSSIER
+                    <button id="resume-btn-mobile" class="flex-1 px-4 py-2 bg-cloud-primary dark:bg-cyber-primary text-white rounded-lg text-sm font-medium glow-on-hover">
+                        RESUME
                     </button>
                     <button id="theme-toggle-mobile" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-800" aria-label="Toggle dark mode">
                         <i class="fas fa-moon dark:hidden"></i>
@@ -132,19 +144,16 @@
 
     <!-- Hero Section -->
     <section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <!-- Background Effect Container -->
-        <div id="particles-container" class="absolute inset-0 z-0"></div>
-        
         <div class="max-w-7xl mx-auto px-6 py-20 relative z-10">
-            <div class="text-center space-y-6">
+            <div class="text-center space-y-8">
                 <!-- Status Badge -->
-                <div class="inline-flex items-center space-x-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-300 dark:border-green-700">
+                <div class="inline-flex items-center space-x-2 px-4 py-2 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-300 dark:border-green-700 glow-on-hover animate opacity-100">
                     <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                     <span class="text-sm font-mono text-green-700 dark:text-green-400">SYSTEM ONLINE</span>
                 </div>
 
                 <!-- Main Headline -->
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight parallax-element opacity-100">
                     <span class="text-gray-900 dark:text-white">SECURITY</span>
                     <br>
                     <span class="bg-gradient-to-r from-cloud-primary to-cloud-accent dark:from-cyber-primary dark:to-cyber-accent bg-clip-text text-transparent">
@@ -153,28 +162,28 @@
                 </h1>
 
                 <!-- Subheadline -->
-                <div class="max-w-2xl mx-auto space-y-2">
-                    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium">
+                <div class="max-w-2xl mx-auto space-y-4 opacity-100">
+                    <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-medium fade-in-up">
                         Cloud Infrastructure & Cybersecurity Operations
                     </p>
-                    <p class="text-base md:text-lg text-gray-500 dark:text-gray-400 font-mono">
+                    <p class="text-base md:text-lg text-gray-500 dark:text-gray-400 font-mono fade-in-up">
                         &gt; Specializing in secure cloud architecture and DevSecOps practices
                     </p>
                 </div>
 
                 <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-                    <a href="#projects" class="w-full sm:w-auto px-8 py-4 bg-cloud-primary dark:bg-cyber-primary text-white rounded-lg font-medium hover:shadow-xl transition-all transform hover:-translate-y-1">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8 fade-in-up">
+                    <a href="#projects" class="w-full sm:w-auto px-8 py-4 bg-cloud-primary dark:bg-cyber-primary text-white rounded-lg font-medium hover:shadow-xl transition-all transform hover:-translate-y-1 glow-on-hover">
                         VIEW OPERATIONS
                         <i class="fas fa-arrow-right ml-2"></i>
                     </a>
-                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-cloud-primary dark:border-cyber-primary text-cloud-primary dark:text-cyber-primary rounded-lg font-medium hover:bg-cloud-primary dark:hover:bg-cyber-primary hover:text-white transition-all">
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-cloud-primary dark:border-cyber-primary text-cloud-primary dark:text-cyber-primary rounded-lg font-medium hover:bg-cloud-primary dark:hover:bg-cyber-primary hover:text-white transition-all glow-on-hover">
                         ESTABLISH CONTACT
                     </a>
                 </div>
 
                 <!-- Scroll Indicator -->
-                <div class="pt-12 animate-bounce">
+                <div class="pt-12 animate-bounce fade-in-up">
                     <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
                 </div>
             </div>
@@ -197,27 +206,27 @@
 
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <!-- About Text -->
-                <div class="space-y-6">
-                    <div class="prose dark:prose-invert max-w-none">
-                        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                <div class="space-y-8">
+                    <div class="space-y-6">
+                        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed font-medium">
                             Hello! I'm <span class="font-semibold text-cloud-primary dark:text-cyber-primary">Saikat Das</span>, a resilient and highly motivated <span class="font-semibold text-cloud-primary dark:text-cyber-primary">B.Tech Information Technology student</span> with a strong academic record and proven leadership experience.
                         </p>
-                        <p class="text-gray-600 dark:text-gray-400">
+                        <p class="text-base text-gray-600 dark:text-gray-400 leading-relaxed">
                             Currently serving as a <span class="font-semibold text-cloud-primary dark:text-cyber-primary">Google Student Ambassador</span> and have completed a comprehensive <span class="font-semibold text-cloud-primary dark:text-cyber-primary">IBM SkillsBuild Front-End Development Internship</span>. I'm passionate about leveraging technology to solve real-world problems and eager to contribute to challenging projects in a dynamic environment.
                         </p>
                     </div>
 
-                    <div class="flex flex-wrap gap-3 pt-4">
-                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium">
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium text-center">
                             Full-Stack Development
                         </span>
-                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium">
+                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium text-center">
                             Student Leadership
                         </span>
-                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium">
+                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium text-center">
                             Google Cloud Platform
                         </span>
-                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium">
+                        <span class="px-4 py-2 bg-cloud-primary/10 dark:bg-cyber-primary/10 text-cloud-primary dark:text-cyber-primary rounded-lg text-sm font-medium text-center">
                             AI Innovation
                         </span>
                     </div>
@@ -260,6 +269,7 @@
                             <span class="skill-badge">Linux</span>
                             <span class="skill-badge">Git</span>
                             <span class="skill-badge">GitHub</span>
+                            <span class="skill-badge">Generative AI</span>
                             <span class="skill-badge">Google Cloud</span>
                         </div>
                     </div>
@@ -740,51 +750,50 @@
     </footer>
 
     <!-- Resume Modal -->
-    <div id="resume-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm">
-        <div class="relative max-w-4xl w-full mx-4 bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden">
+    <div id="resume-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-sm">
+        <div class="relative w-[700px] h-[85vh] mx-2 bg-white dark:bg-gray-900 rounded-lg shadow-2xl overflow-hidden flex flex-col">
             <!-- Modal Header -->
-            <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-                <h3 class="text-2xl font-bold font-mono">
+            <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+                <h3 class="text-lg font-bold font-mono text-gray-800 dark:text-gray-200">
                     <i class="fas fa-file-alt text-cloud-primary dark:text-cyber-primary mr-2"></i>
                     AGENT DOSSIER
                 </h3>
-                <button id="close-modal" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors" aria-label="Close resume modal">
-                    <i class="fas fa-times text-xl"></i>
+                <button id="close-modal" class="p-1.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded transition-colors" aria-label="Close resume modal">
+                    <i class="fas fa-times text-lg"></i>
                 </button>
             </div>
 
             <!-- Modal Body -->
-            <div class="p-6 max-h-[70vh] overflow-y-auto">
-                <div class="relative">
+            <div class="flex-1 p-2 overflow-hidden">
+                <div class="relative h-full">
                     <!-- Watermark -->
-                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                        <div class="relative">
-                            <p class="text-6xl font-bold transform -rotate-45 font-mono text-red-600 dark:text-red-400 opacity-30">CONFIDENTIAL</p>
-                            <p class="absolute inset-0 text-6xl font-bold transform -rotate-45 font-mono text-gray-900 dark:text-gray-100 opacity-10">CONFIDENTIAL</p>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10 overflow-hidden">
+                        <div class="relative transform -rotate-45">
+                            <p class="text-5xl font-bold font-mono text-red-600 dark:text-red-400 opacity-20 whitespace-nowrap">CONFIDENTIAL</p>
+                            <p class="absolute top-0 left-0 text-5xl font-bold font-mono text-gray-800 dark:text-gray-200 opacity-10 whitespace-nowrap">CONFIDENTIAL</p>
                         </div>
                     </div>
                     
                     <!-- Zoom Controls -->
-                    <div class="absolute top-2 right-2 z-20 flex gap-2">
-                        <button id="zoom-in" class="p-2 bg-black/70 text-white rounded-lg hover:bg-black/80 transition-colors" aria-label="Zoom in">
-                            <i class="fas fa-search-plus"></i>
+                    <div class="absolute top-1 right-1 z-20 flex gap-1">
+                        <button id="zoom-in" class="p-1.5 bg-black/70 text-white rounded hover:bg-black/80 transition-colors" aria-label="Zoom in">
+                            <i class="fas fa-search-plus text-sm"></i>
                         </button>
-                        <button id="zoom-out" class="p-2 bg-black/70 text-white rounded-lg hover:bg-black/80 transition-colors" aria-label="Zoom out">
-                            <i class="fas fa-search-minus"></i>
+                        <button id="zoom-out" class="p-1.5 bg-black/70 text-white rounded hover:bg-black/80 transition-colors" aria-label="Zoom out">
+                            <i class="fas fa-search-minus text-sm"></i>
                         </button>
-                        <button id="reset-zoom" class="p-2 bg-black/70 text-white rounded-lg hover:bg-black/80 transition-colors" aria-label="Reset zoom">
-                            <i class="fas fa-expand-arrows-alt"></i>
+                        <button id="reset-zoom" class="p-1.5 bg-black/70 text-white rounded hover:bg-black/80 transition-colors" aria-label="Reset zoom">
+                            <i class="fas fa-expand-arrows-alt text-sm"></i>
                         </button>
                     </div>
                     
                     <!-- Resume Image Viewer with Protection -->
-                                <!-- Resume Image Viewer with Protection -->
-            <div class="bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden relative" id="resume-container">
+            <div class="bg-white dark:bg-gray-800 rounded overflow-hidden relative h-full" id="resume-container">
                         <img 
                             id="resume-image"
                             src="assets/Files/Saikat Das_CV.jpg" 
                             alt="Saikat Das Resume" 
-                            class="w-full h-auto max-h-[600px] object-contain resume-image transition-transform duration-300"
+                            class="w-full h-full object-contain resume-image transition-transform duration-300"
                         >
                         
                         <!-- Fallback message -->
