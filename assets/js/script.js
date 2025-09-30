@@ -184,6 +184,8 @@ function initializeApp() {
     // Cache DOM elements
     cacheDOMElements();
     
+
+    
     // Initialize all features
     initializeTheme();
     initializeMobileMenu();
@@ -194,12 +196,6 @@ function initializeApp() {
     initializeSmoothScrolling();
     
     console.log('✅ Security Terminal Online - All Systems Operational');
-    
-    // Debug project data
-    console.log('🔍 Debug: ProjectsData object:', ProjectsData);
-    console.log('🔍 Debug: Completed projects:', ProjectsData.completed);
-    console.log('🔍 Debug: In-progress projects:', ProjectsData["in-progress"]);
-    console.log('🔍 Debug: Planned projects:', ProjectsData.planned);
 }
 
 function cacheDOMElements() {
@@ -214,6 +210,8 @@ function cacheDOMElements() {
     DOMElements.certificationsGrid = document.getElementById('certifications-grid');
     DOMElements.navLinks = document.querySelectorAll('.nav-link');
     DOMElements.scrollElements = document.querySelectorAll('.fade-in, .slide-up');
+    
+
 }
 
 // =====================================
@@ -396,24 +394,44 @@ function closeResumeModal() {
 // =====================================
 
 function initializeProjectFiltering() {
-    if (DOMElements.projectTabs.length > 0 && DOMElements.projectGrid) {
-        DOMElements.projectTabs.forEach(tab => {
-            tab.addEventListener('click', (e) => {
-                e.preventDefault();
-                const filter = tab.dataset.filter;
-                if (filter && filter !== AppState.currentProjectFilter) {
-                    switchProjectFilter(filter);
-                }
-            });
-        });
+    // Verify DOM elements exist
+    if (!DOMElements.projectGrid) {
+        console.error('Project grid element not found! ID: projects-grid');
+        return;
+    }
+    
+    if (!DOMElements.projectTabs || DOMElements.projectTabs.length === 0) {
+        console.error('Project filter buttons not found! Class: project-filter-btn');
+        return;
+    }
+    
+    // Add event listeners to filter buttons
+    DOMElements.projectTabs.forEach((tab, index) => {
+        const filter = tab.dataset.filter;
+        if (!filter) {
+            console.error(`Project tab ${index} missing data-filter attribute`);
+            return;
+        }
         
-        // Load initial projects
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (filter !== AppState.currentProjectFilter) {
+                switchProjectFilter(filter);
+            }
+        });
+    });
+    
+    // Load initial projects with error handling
+    try {
         switchProjectFilter('completed');
+    } catch (error) {
+        console.error('Failed to initialize project filtering:', error);
+        // Fallback: try to display any projects
+        renderProjects('completed');
     }
 }
 
 function switchProjectFilter(filter) {
-    console.log('🔄 Switching to filter:', filter);
     AppState.currentProjectFilter = filter;
     
     // Update active tab
@@ -434,56 +452,68 @@ function switchProjectFilter(filter) {
 }
 
 function renderProjects(filter) {
-    console.log('🎯 renderProjects called with filter:', filter);
-    console.log('📊 Available projects for filter:', ProjectsData[filter]);
+    // Validate filter parameter
+    if (!filter || typeof filter !== 'string') {
+        console.error('Invalid filter parameter:', filter);
+        return;
+    }
     
+    // Get projects for the filter
     const projects = ProjectsData[filter] || [];
-    console.log('📋 Projects array:', projects, 'Length:', projects.length);
     
     if (!DOMElements.projectGrid) {
         console.error('❌ Project grid element not found!');
         return;
     }
     
-    console.log('✅ Project grid element found:', DOMElements.projectGrid);
+    // Clear grid with smooth transition
+    DOMElements.projectGrid.style.opacity = '0';
     
-    // Clear grid immediately (disable fade effect for debugging)
-    DOMElements.projectGrid.innerHTML = '';
+    setTimeout(() => {
+        DOMElements.projectGrid.innerHTML = '';
         
-    if (projects.length === 0) {
-        DOMElements.projectGrid.innerHTML = `
-            <div class="col-span-full text-center py-12">
-                <i class="fas fa-folder-open text-4xl text-gray-400 dark:text-gray-600 mb-4"></i>
-                <p class="text-gray-500 dark:text-gray-400 text-lg">No projects in this category yet.</p>
-            </div>
-        `;
-    } else {
-        projects.forEach(project => {
-            console.log('🔄 Processing project:', project.title);
-            const projectCard = createProjectCard(project);
-            console.log('📋 Created card:', projectCard);
-            console.log('🎯 Appending to grid:', DOMElements.projectGrid);
-            DOMElements.projectGrid.appendChild(projectCard);
-            console.log('✅ Card appended successfully');
-        });
-        console.log('🏁 Final grid children count:', DOMElements.projectGrid.children.length);
-    }
+        if (projects.length === 0) {
+            DOMElements.projectGrid.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <i class="fas fa-folder-open text-4xl text-gray-400 dark:text-gray-600 mb-4"></i>
+                    <p class="text-gray-500 dark:text-gray-400 text-lg">No projects in this category yet.</p>
+                </div>
+            `;
+        } else {
+            projects.forEach((project, index) => {
+                const projectCard = createProjectCard(project);
+                if (projectCard) {
+                    DOMElements.projectGrid.appendChild(projectCard);
+                    // Add show class with staggered delay for animation
+                    setTimeout(() => {
+                        projectCard.classList.add('show');
+                    }, index * 100 + 100);
+                }
+            });
+        }
         
-    // Set opacity to 1 immediately
-    DOMElements.projectGrid.style.opacity = '1';
-        
-    // Debug: Check if cards are in DOM
-    console.log('🔍 Final check - Grid innerHTML:', DOMElements.projectGrid.innerHTML);
-    console.log('🔍 Grid children count:', DOMElements.projectGrid.children.length);
+        // Fade in with delay and ensure section is visible
+        setTimeout(() => {
+            DOMElements.projectGrid.style.opacity = '1';
+            // Ensure projects section is visible
+            const projectsSection = document.getElementById('projects');
+            if (projectsSection) {
+                projectsSection.classList.add('projects-loaded', 'fade-in');
+            }
+            // Debug: Check final state
+            console.log('✅ Projects rendered. Grid children:', DOMElements.projectGrid.children.length);
+        }, 50);
+    }, 150);
 }
 
 function createProjectCard(project) {
-    console.log('🔨 Creating project card for:', project);
+    if (!project) {
+        console.error('Invalid project data');
+        return null;
+    }
     
     const card = document.createElement('div');
     card.className = 'project-card group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2';
-    
-    console.log('📄 Card element created:', card);
     
     const statusBadge = getStatusBadge(project.status);
     const technologies = project.technologies.map(tech => `<span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">${tech}</span>`).join('');
@@ -535,7 +565,6 @@ function createProjectCard(project) {
         </div>
     `;
     
-    console.log('✅ Card HTML set, returning card:', card);
     return card;
 }
 

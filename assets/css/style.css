@@ -74,6 +74,15 @@ section.animate-fade-in {
     transform: translateY(0);
 }
 
+/* Projects section should be visible when projects are rendered */
+#projects.projects-loaded,
+#projects-grid {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+
+
 /* Staggered fade-in for child elements */
 .stagger-fade > * {
     opacity: 0;
@@ -322,12 +331,17 @@ button:hover::before, a.button:hover::before {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    opacity: 0;
-    transform: scale(0.9);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    color: #222;
+    opacity: 1;
+    transform: scale(1);
 }
 
 .dark .project-card {
     background: #1e293b;
+    color: #f3f3f3;
 }
 
 .project-card.show {
@@ -381,26 +395,17 @@ button:hover::before, a.button:hover::before {
     box-shadow: var(--shadow-medium);
 }
 
-/* --- Fix for projects grid visibility --- */
+/* --- Projects Grid Styles --- */
 #projects-grid {
   min-height: 400px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
+  opacity: 1;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.project-card {
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  color: #222;
-}
-
-body.dark .project-card {
-  background: #23272f;
-  color: #f3f3f3;
-}
+/* Duplicate project-card styles removed - consolidated above */
 
 /* --- End fix --- */
 
