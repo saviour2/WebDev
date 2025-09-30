@@ -81,6 +81,31 @@ section.animate-fade-in {
     transform: translateY(0) !important;
 }
 
+/* Resume container styles for zoom and drag functionality */
+#resume-container {
+    overflow: hidden;
+    position: relative;
+}
+
+#resume-image {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
+
+#resume-image.draggable-zoom {
+    cursor: grab;
+}
+
+#resume-image.dragging {
+    cursor: grabbing;
+}
+
 
 
 /* Staggered fade-in for child elements */
@@ -325,13 +350,14 @@ button:hover::before, a.button:hover::before {
 .project-card {
     background: white;
     border-radius: 1rem;
-    padding: 1.5rem;
+    padding: 1.25rem;
     box-shadow: var(--shadow-light);
     transition: var(--transition-smooth);
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    min-height: 200px;
+    min-height: 180px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     color: #222;
@@ -399,8 +425,10 @@ button:hover::before, a.button:hover::before {
 #projects-grid {
   min-height: 400px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
   opacity: 1;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

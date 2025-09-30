@@ -1,6 +1,6 @@
-# Personal Portfolio Website
+# Personal Portfolio Website v1.5.5
 
-A modern, responsive portfolio website showcasing technical skills, projects, and professional certifications with a sleek "Security Terminal" aesthetic.
+A modern, responsive portfolio website showcasing technical skills, projects, and professional certifications with a sleek "Security Terminal" aesthetic. Features enhanced security measures and optimized layout.
 
 ## 🚀 Live Demo
 Visit the live portfolio: [Portfolio Website](https://saviour2.github.io/WebDev/)
@@ -24,7 +24,9 @@ Visit the live portfolio: [Portfolio Website](https://saviour2.github.io/WebDev/
 ### 🛠 Technical Features
 - **Static Deployment:** No external dependencies or databases required
 - **Certificate System:** Hardcoded certificate cards with instant category filtering
-- **Resume Integration:** Secure PDF viewer with watermark protection
+- **Secure Resume Viewer:** Protected resume modal with zoom functionality and right-click protection
+- **Enhanced Security:** XSS protection, input sanitization, and secure DOM manipulation
+- **Optimized Layout:** Narrower project cards with improved grid system for better readability
 - **Performance Optimized:** Hardware-accelerated animations and efficient rendering
 - **Cross-Browser Compatible:** Works on Chrome, Firefox, Safari, and Edge
 
@@ -84,6 +86,15 @@ This is a static website that can be deployed to any web hosting service:
 - **Icons:** Font Awesome 6.4.0
 - **Fonts:** Inter (UI), JetBrains Mono (Code)
 - **Animations:** Custom CSS keyframes and transitions
+- **Security:** Input sanitization, XSS protection, secure DOM methods
+
+## 🔒 Security Features
+
+- **Input Sanitization:** All user inputs and project data are sanitized before rendering
+- **XSS Protection:** Secure DOM manipulation using createElement instead of innerHTML
+- **Resume Protection:** Right-click disabled, drag prevention, and keyboard shortcut blocking
+- **URL Validation:** All external links validated before rendering
+- **Secure Modal:** Zoom-enabled resume viewer with comprehensive protection measures
 
 ## 🎯 Key Highlights
 

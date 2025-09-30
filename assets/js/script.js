@@ -20,53 +20,21 @@ const ProjectsData = {
     "completed": [
         {
             id: 1,
-            title: "Personal Portfolio Website",
-            description: "Developed a fully responsive personal portfolio to showcase skills and projects, featuring a clean UI and personalized theme. Implemented the website using GSAP library for animated backgrounds, contents and layout of the page.",
-            technologies: ["HTML5", "CSS3", "JavaScript", "GSAP"],
+            title: "Portfolio Website v1.0",
+            description: "Successfully designed and developed a modern, responsive portfolio website with advanced animations, certificate categorization system, and improved user experience. Features dual-theme support and modern security terminal aesthetic with fully functional project filtering.",
+            technologies: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS"],
             status: "completed",
-            liveUrl: "https://github.com/saviour2/portfolio",
-            githubUrl: "https://github.com/saviour2/portfolio"
-        },
-        {
-            id: 2,
-            title: "E-Commerce Application", 
-            description: "Built a functional desktop e-commerce application with distinct portals for customers and sellers. Implemented a MySQL database to manage user authentication, product listings, wishlists, and cart data.",
-            technologies: ["Java", "JavaFX", "MySQL"],
-            status: "completed",
-            liveUrl: "https://github.com/saviour2/minipro",
-            githubUrl: "https://github.com/saviour2/minipro"
+            imageUrl: "assets/Files/Terminal_Portfolio.png",
+            liveUrl: "https://saviour2.github.io/WebDev/",
+            githubUrl: "https://github.com/saviour2/WebDev"
         }
     ],
     "in-progress": [
-        {
-            id: 3,
-            title: "Portfolio Website v2.0",
-            description: "Redesigning and enhancing the portfolio website with advanced animations, certificate categorization system, and improved user experience. Features dual-theme support and modern security terminal aesthetic.",
-            technologies: ["HTML5", "CSS3", "JavaScript", "Tailwind CSS", "GSAP"],
-            status: "in-progress",
-            imageUrl: "assets/Files/Terminal_Portfolio.png",
-            githubUrl: "https://github.com/saviour2/WebDev"
-        },
-        {
-            id: 4,
-            title: "Google Student Ambassador Program",
-            description: "Leading AI workshops, organizing tech events, and driving conversations around AI innovation among peers as part of Google's student leadership program.",
-            technologies: ["AI", "Community Building", "Event Management", "Leadership"],
-            status: "in-progress",
-            githubUrl: "https://github.com/saikatdas0790"
-        },
-        {
-            id: 5,
-            title: "IBM SkillsBuild Internship",
-            description: "Completing a comprehensive 6-week intensive internship focused on modern Front-End Web Development practices under the guidance of industry mentors.",
-            technologies: ["HTML5", "CSS3", "JavaScript", "React", "Modern Frontend"],
-            status: "in-progress",
-            githubUrl: "https://github.com/saikatdas0790"
-        }
+        
     ],
     "planned": [
         {
-            id: 6,
+            id: 2,
             title: "Automated Cloud Security Scanner",
             description: "Build an automated security scanner for cloud infrastructure. Will include vulnerability assessment, compliance checking, and real-time alerting capabilities.",
             technologies: ["Python", "AWS/Azure", "Security APIs", "Docker"],
@@ -74,7 +42,7 @@ const ProjectsData = {
             timeline: "Q4 2025"
         },
         {
-            id: 7,
+            id: 3,
             title: "Simple REST API (Book/Movie Catalog)",
             description: "Develop a comprehensive REST API for managing book and movie catalogs with full CRUD operations, user authentication, and database integration.",
             technologies: ["Node.js", "Express", "MongoDB", "JWT", "RESTful APIs"],
@@ -82,7 +50,7 @@ const ProjectsData = {
             timeline: "Q4 2025"
         },
         {
-            id: 8,
+            id: 4,
             title: "Basic User Authentication System",
             description: "Implement a secure user authentication system with registration, login, password reset, and session management features.",
             technologies: ["Node.js", "Express", "MongoDB", "bcrypt", "JWT"],
@@ -90,7 +58,7 @@ const ProjectsData = {
             timeline: "Q4 2025"
         },
         {
-            id: 9,
+            id: 5,
             title: "Web Scraper & Data Aggregator",
             description: "Create an intelligent web scraper to collect and aggregate data from multiple sources with data processing and visualization capabilities.",
             technologies: ["Python", "BeautifulSoup", "Scrapy", "Pandas", "SQLite"],
@@ -98,7 +66,7 @@ const ProjectsData = {
             timeline: "Q1 2026"
         },
         {
-            id: 10,
+            id: 6,
             title: "Containerized Backend Deployment",
             description: "Containerize and deploy a backend application on cloud VM with Docker, implementing CI/CD pipeline and monitoring.",
             technologies: ["Docker", "Docker Compose", "AWS/GCP", "CI/CD", "Monitoring"],
@@ -106,7 +74,7 @@ const ProjectsData = {
             timeline: "Q1 2026"
         },
         {
-            id: 11,
+            id: 7,
             title: "Simple Serverless Web App",
             description: "Build a serverless web application using cloud functions, demonstrating modern cloud-native development practices.",
             technologies: ["AWS Lambda", "API Gateway", "DynamoDB", "S3", "CloudFormation"],
@@ -114,7 +82,7 @@ const ProjectsData = {
             timeline: "Q1 2026"
         },
         {
-            id: 12,
+            id: 8,
             title: "Terraform Infrastructure Lab",
             description: "Hands-on Infrastructure as Code project using Terraform to provision and manage cloud resources with best practices.",
             technologies: ["Terraform", "AWS/Azure", "IaC", "Git", "CI/CD"],
@@ -122,7 +90,7 @@ const ProjectsData = {
             timeline: "Q3 2026"
         },
         {
-            id: 13,
+            id: 9,
             title: "Automated Backup Script",
             description: "Develop a comprehensive backup solution with automated scheduling, encryption, and cloud storage integration.",
             technologies: ["Python", "Cron", "Cloud Storage", "Encryption", "Logging"],
@@ -130,7 +98,7 @@ const ProjectsData = {
             timeline: "Q3 2026"
         },
         {
-            id: 14,
+            id: 10,
             title: "Secure CI/CD Pipeline",
             description: "Implement a secure continuous integration and deployment pipeline with vulnerability scanning and automated testing.",
             technologies: ["GitHub Actions", "Docker", "Security Scanning", "SAST", "DAST"],
@@ -138,7 +106,7 @@ const ProjectsData = {
             timeline: "Q4 2026"
         },
         {
-            id: 15,
+            id: 11,
             title: "Infrastructure as Code Deployment",
             description: "Deploy a complete application stack using Infrastructure as Code principles with Terraform and cloud best practices.",
             technologies: ["Terraform", "Kubernetes", "Helm", "AWS/GCP", "GitOps"],
@@ -361,6 +329,9 @@ function initializeResumeModal() {
                 closeResumeModal();
             }
         });
+        
+        // Initialize zoom functionality and protection
+        initializeResumeProtection();
     }
 }
 
@@ -369,11 +340,23 @@ function openResumeModal() {
     DOMElements.resumeModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     
+    // Reset zoom and position
+    currentZoom = 1;
+    imagePosition.x = 0;
+    imagePosition.y = 0;
+    isDragging = false;
+    
     // Add fade-in animation
     requestAnimationFrame(() => {
         DOMElements.resumeModal.classList.add('opacity-100');
         const modalContent = DOMElements.resumeModal.querySelector('.bg-white, .dark\\:bg-gray-800');
         modalContent?.classList.add('scale-100');
+        
+        // Re-initialize protection after modal is visible
+        setTimeout(() => {
+            console.log('🔄 Re-initializing resume protection');
+            initializeResumeProtection();
+        }, 100);
     });
 }
 
@@ -512,70 +495,147 @@ function createProjectCard(project) {
         return null;
     }
     
+    // Validate and sanitize project data
+    const safeProject = {
+        title: sanitizeInput(project.title || ''),
+        description: sanitizeInput(project.description || ''),
+        technologies: Array.isArray(project.technologies) ? project.technologies.map(tech => sanitizeInput(tech)) : [],
+        status: project.status || 'planned',
+        liveUrl: isValidUrl(project.liveUrl) ? project.liveUrl : null,
+        githubUrl: isValidUrl(project.githubUrl) ? project.githubUrl : null,
+        imageUrl: isValidUrl(project.imageUrl) ? project.imageUrl : null,
+        timeline: project.timeline ? sanitizeInput(project.timeline) : null
+    };
+    
     const card = document.createElement('div');
     card.className = 'project-card group bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2';
     
-    const statusBadge = getStatusBadge(project.status);
-    const technologies = project.technologies.map(tech => `<span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">${tech}</span>`).join('');
-    
-    const liveButton = project.liveUrl ? 
-        `<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-cloud-primary dark:bg-cyber-primary text-white rounded-lg text-sm hover:shadow-lg transition-all">
-            <i class="fas fa-external-link-alt mr-2"></i>Live Demo
-        </a>` : '';
-    
-    const githubButton = project.githubUrl ? 
-        `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-700 text-white rounded-lg text-sm hover:shadow-lg transition-all">
-            <i class="fab fa-github mr-2"></i>GitHub
-        </a>` : '';
+    // Create elements safely using createElement
+    const cardContent = document.createElement('div');
     
     // Add project image if available
-    const projectImage = project.imageUrl ? 
-        `<div class="mb-4 rounded-lg overflow-hidden">
-            <img src="${project.imageUrl}" alt="${project.title}" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-        </div>` : '';
+    if (safeProject.imageUrl) {
+        const imageContainer = document.createElement('div');
+        imageContainer.className = 'mb-4 rounded-lg overflow-hidden';
+        const img = document.createElement('img');
+        img.src = safeProject.imageUrl;
+        img.alt = safeProject.title;
+        img.className = 'w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105';
+        imageContainer.appendChild(img);
+        cardContent.appendChild(imageContainer);
+    }
     
-    // Add timeline for planned projects
-    const timeline = project.timeline ? 
-        `<div class="text-sm text-gray-500 dark:text-gray-400 mb-2">
-            <i class="fas fa-calendar-alt mr-1"></i>Timeline: ${project.timeline}
-        </div>` : '';
+    // Header with title and status
+    const header = document.createElement('div');
+    header.className = 'flex justify-between items-start mb-4';
     
-    card.innerHTML = `
-        ${projectImage}
-        <div class="flex justify-between items-start mb-4">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-cloud-primary dark:group-hover:text-cyber-primary transition-colors">
-                ${project.title}
-            </h3>
-            ${statusBadge}
-        </div>
-        
-        ${timeline}
-        
-        <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-            ${project.description}
-        </p>
-        
-        <div class="flex flex-wrap gap-2 mb-6">
-            ${technologies}
-        </div>
-        
-        <div class="flex gap-3">
-            ${liveButton}
-            ${githubButton}
-        </div>
-    `;
+    const title = document.createElement('h3');
+    title.className = 'text-xl font-semibold text-gray-900 dark:text-white group-hover:text-cloud-primary dark:group-hover:text-cyber-primary transition-colors';
+    title.textContent = safeProject.title;
+    
+    const statusBadge = createStatusBadge(safeProject.status);
+    
+    header.appendChild(title);
+    if (statusBadge) header.appendChild(statusBadge);
+    cardContent.appendChild(header);
+    
+    // Timeline for planned projects
+    if (safeProject.timeline) {
+        const timelineDiv = document.createElement('div');
+        timelineDiv.className = 'text-sm text-gray-500 dark:text-gray-400 mb-2';
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-calendar-alt mr-1';
+        timelineDiv.appendChild(icon);
+        timelineDiv.appendChild(document.createTextNode(`Timeline: ${safeProject.timeline}`));
+        cardContent.appendChild(timelineDiv);
+    }
+    
+    // Description
+    const description = document.createElement('p');
+    description.className = 'text-gray-600 dark:text-gray-300 mb-4 leading-relaxed';
+    description.textContent = safeProject.description;
+    cardContent.appendChild(description);
+    
+    // Technologies
+    const techContainer = document.createElement('div');
+    techContainer.className = 'flex flex-wrap gap-2 mb-6';
+    safeProject.technologies.forEach(tech => {
+        const techSpan = document.createElement('span');
+        techSpan.className = 'px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full';
+        techSpan.textContent = tech;
+        techContainer.appendChild(techSpan);
+    });
+    cardContent.appendChild(techContainer);
+    
+    // Buttons
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'flex gap-3';
+    
+    if (safeProject.liveUrl) {
+        const liveButton = createSecureButton(safeProject.liveUrl, 'Live Demo', 'fas fa-external-link-alt', 'bg-cloud-primary dark:bg-cyber-primary');
+        buttonContainer.appendChild(liveButton);
+    }
+    
+    if (safeProject.githubUrl) {
+        const githubButton = createSecureButton(safeProject.githubUrl, 'GitHub', 'fab fa-github', 'bg-gray-800 dark:bg-gray-700');
+        buttonContainer.appendChild(githubButton);
+    }
+    
+    cardContent.appendChild(buttonContainer);
+    card.appendChild(cardContent);
     
     return card;
 }
 
-function getStatusBadge(status) {
+// Security helper functions
+function isValidUrl(url) {
+    if (!url) return false;
+    
+    // Allow relative URLs for local assets
+    if (url.startsWith('assets/') || url.startsWith('./') || url.startsWith('../')) {
+        return true;
+    }
+    
+    // Validate absolute URLs
+    try {
+        const urlObj = new URL(url);
+        return ['http:', 'https:'].includes(urlObj.protocol);
+    } catch {
+        return false;
+    }
+}
+
+function createSecureButton(url, text, iconClass, bgClass) {
+    const button = document.createElement('a');
+    button.href = url;
+    button.target = '_blank';
+    button.rel = 'noopener noreferrer';
+    button.className = `inline-flex items-center px-4 py-2 ${bgClass} text-white rounded-lg text-sm hover:shadow-lg transition-all`;
+    
+    const icon = document.createElement('i');
+    icon.className = `${iconClass} mr-2`;
+    
+    button.appendChild(icon);
+    button.appendChild(document.createTextNode(text));
+    
+    return button;
+}
+
+function createStatusBadge(status) {
     const badges = {
-        completed: '<span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs font-medium rounded-full">✅ Completed</span>',
-        'in-progress': '<span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs font-medium rounded-full">🔄 In Progress</span>',
-        planned: '<span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs font-medium rounded-full">📋 Planned</span>'
+        completed: { text: '✅ Completed', classes: 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' },
+        'in-progress': { text: '🔄 In Progress', classes: 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200' },
+        planned: { text: '📋 Planned', classes: 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200' }
     };
     
-    return badges[status] || '';
+    const badgeInfo = badges[status];
+    if (!badgeInfo) return null;
+    
+    const badge = document.createElement('span');
+    badge.className = `px-3 py-1 ${badgeInfo.classes} text-xs font-medium rounded-full`;
+    badge.textContent = badgeInfo.text;
+    
+    return badge;
 }
 
 // =====================================
@@ -698,6 +758,153 @@ function updateActiveNavigation() {
 // =====================================
 // UTILITY FUNCTIONS
 // =====================================
+
+// Resume protection and zoom functionality
+let currentZoom = 1;
+const minZoom = 0.5;
+const maxZoom = 3;
+const zoomStep = 0.25;
+let isDragging = false;
+let dragStart = { x: 0, y: 0 };
+let imagePosition = { x: 0, y: 0 };
+
+function initializeResumeProtection() {
+    const resumeImage = document.getElementById('resume-image');
+    const resumeContainer = document.getElementById('resume-container');
+    const zoomInBtn = document.getElementById('zoom-in');
+    const zoomOutBtn = document.getElementById('zoom-out');
+    const resetZoomBtn = document.getElementById('reset-zoom');
+    
+    if (!resumeImage || !resumeContainer) {
+        console.log('❌ Resume elements not found');
+        return;
+    }
+    
+    console.log('✅ Resume protection initialized');
+    
+    // Set initial properties
+    resumeImage.draggable = false;
+    
+    // Disable right-click context menu (but don't block mousedown)
+    resumeContainer.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+    });
+    
+    // Disable native drag
+    resumeImage.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+    });
+    
+    // Simple drag functionality for zoomed images
+    resumeImage.addEventListener('mousedown', function(e) {
+        console.log('🖱️ Mouse down - Zoom:', currentZoom);
+        if (currentZoom > 1) {
+            isDragging = true;
+            dragStart.x = e.clientX - imagePosition.x;
+            dragStart.y = e.clientY - imagePosition.y;
+            console.log('✅ Drag started at:', dragStart);
+            e.preventDefault();
+        }
+    });
+    
+    // Use window events for better capture
+    window.addEventListener('mousemove', function(e) {
+        if (isDragging && currentZoom > 1) {
+            imagePosition.x = e.clientX - dragStart.x;
+            imagePosition.y = e.clientY - dragStart.y;
+            console.log('🔄 Dragging to:', imagePosition);
+            applyZoom();
+            e.preventDefault();
+        }
+    });
+    
+    window.addEventListener('mouseup', function(e) {
+        if (isDragging) {
+            console.log('🛑 Drag ended');
+            isDragging = false;
+        }
+    });
+    
+    // Disable keyboard shortcuts for saving/copying
+    document.addEventListener('keydown', (e) => {
+        if (AppState.isResumeModalOpen) {
+            // Disable Ctrl+S, Ctrl+A, Ctrl+C, F12, etc.
+            if ((e.ctrlKey || e.metaKey) && ['s', 'a', 'c', 'v', 'x'].includes(e.key.toLowerCase())) {
+                e.preventDefault();
+                return false;
+            }
+            // Disable F12 (Developer Tools)
+            if (e.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+        }
+    });
+    
+    // Zoom functionality
+    if (zoomInBtn) {
+        zoomInBtn.addEventListener('click', () => {
+            console.log('🔍 Zoom In clicked');
+            if (currentZoom < maxZoom) {
+                currentZoom += zoomStep;
+                console.log('📈 New zoom:', currentZoom);
+                applyZoom();
+            }
+        });
+    }
+    
+    if (zoomOutBtn) {
+        zoomOutBtn.addEventListener('click', () => {
+            if (currentZoom > minZoom) {
+                currentZoom -= zoomStep;
+                applyZoom();
+            }
+        });
+    }
+    
+    if (resetZoomBtn) {
+        resetZoomBtn.addEventListener('click', () => {
+            currentZoom = 1;
+            imagePosition.x = 0;
+            imagePosition.y = 0;
+            applyZoom();
+        });
+    }
+    
+    // Mouse wheel zoom
+    resumeContainer.addEventListener('wheel', (e) => {
+        if (e.ctrlKey) {
+            e.preventDefault();
+            if (e.deltaY < 0 && currentZoom < maxZoom) {
+                currentZoom += zoomStep;
+                applyZoom();
+            } else if (e.deltaY > 0 && currentZoom > minZoom) {
+                currentZoom -= zoomStep;
+                applyZoom();
+            }
+        }
+    });
+}
+
+function applyZoom() {
+    const resumeImage = document.getElementById('resume-image');
+    if (resumeImage) {
+        const transform = `translate(${imagePosition.x}px, ${imagePosition.y}px) scale(${currentZoom})`;
+        resumeImage.style.transform = transform;
+        resumeImage.style.transformOrigin = 'center center';
+        
+        // Simple cursor management
+        if (currentZoom > 1) {
+            resumeImage.style.cursor = isDragging ? 'grabbing' : 'grab';
+        } else {
+            resumeImage.style.cursor = 'default';
+            imagePosition.x = 0;
+            imagePosition.y = 0;
+        }
+        
+        console.log('📏 Applied - Zoom:', currentZoom, 'Position:', imagePosition.x, imagePosition.y);
+    }
+}
 
 // Sanitize user input (for future backend integration)
 function sanitizeInput(input) {
