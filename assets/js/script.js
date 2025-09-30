@@ -1,6 +1,6 @@
 /* ===================================
    SECURITY TERMINAL - MAIN SCRIPT
-   Version: 1.3.0
+   Version: 2.0.0
    Author: Portfolio System
    =================================== */
 
@@ -147,12 +147,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeApp() {
-    console.log('🚀 Security Terminal Initializing...');
-    
     // Cache DOM elements
     cacheDOMElements();
-    
-
     
     // Initialize all features
     initializeTheme();
@@ -163,7 +159,8 @@ function initializeApp() {
     initializeScrollAnimations();
     initializeSmoothScrolling();
     
-    console.log('✅ Security Terminal Online - All Systems Operational');
+    // Initialize cyberpunk cursor effects
+    new CyberpunkCursor();
 }
 
 function cacheDOMElements() {
@@ -354,7 +351,6 @@ function openResumeModal() {
         
         // Re-initialize protection after modal is visible
         setTimeout(() => {
-            console.log('🔄 Re-initializing resume protection');
             initializeResumeProtection();
         }, 100);
     });
@@ -453,15 +449,24 @@ function renderProjects(filter) {
     DOMElements.projectGrid.style.opacity = '0';
     
     setTimeout(() => {
-        DOMElements.projectGrid.innerHTML = '';
+        while (DOMElements.projectGrid.firstChild) {
+            DOMElements.projectGrid.removeChild(DOMElements.projectGrid.firstChild);
+        }
         
         if (projects.length === 0) {
-            DOMElements.projectGrid.innerHTML = `
-                <div class="col-span-full text-center py-12">
-                    <i class="fas fa-folder-open text-4xl text-gray-400 dark:text-gray-600 mb-4"></i>
-                    <p class="text-gray-500 dark:text-gray-400 text-lg">No projects in this category yet.</p>
-                </div>
-            `;
+            const emptyDiv = document.createElement('div');
+            emptyDiv.className = 'col-span-full text-center py-12';
+            
+            const icon = document.createElement('i');
+            icon.className = 'fas fa-folder-open text-4xl text-gray-400 dark:text-gray-600 mb-4';
+            
+            const message = document.createElement('p');
+            message.className = 'text-gray-500 dark:text-gray-400 text-lg';
+            message.textContent = 'No projects in this category yet.';
+            
+            emptyDiv.appendChild(icon);
+            emptyDiv.appendChild(message);
+            DOMElements.projectGrid.appendChild(emptyDiv);
         } else {
             projects.forEach((project, index) => {
                 const projectCard = createProjectCard(project);
@@ -483,8 +488,7 @@ function renderProjects(filter) {
             if (projectsSection) {
                 projectsSection.classList.add('projects-loaded', 'fade-in');
             }
-            // Debug: Check final state
-            console.log('✅ Projects rendered. Grid children:', DOMElements.projectGrid.children.length);
+            // Projects rendered successfully
         }, 50);
     }, 150);
 }
@@ -776,11 +780,10 @@ function initializeResumeProtection() {
     const resetZoomBtn = document.getElementById('reset-zoom');
     
     if (!resumeImage || !resumeContainer) {
-        console.log('❌ Resume elements not found');
         return;
     }
     
-    console.log('✅ Resume protection initialized');
+
     
     // Set initial properties
     resumeImage.draggable = false;
@@ -805,7 +808,7 @@ function initializeResumeProtection() {
                 dragStart.y = e.clientY - imagePosition.y;
                 resumeImage.style.cursor = 'grabbing';
                 resumeContainer.style.userSelect = 'none';
-                console.log('🟢 Drag started:', { zoom: currentZoom, start: dragStart });
+
                 e.preventDefault();
                 e.stopPropagation();
             }
@@ -825,7 +828,7 @@ function initializeResumeProtection() {
                 resumeImage.style.transform = `translate(${imagePosition.x}px, ${imagePosition.y}px) scale(${currentZoom})`;
                 resumeImage.style.transition = 'none';
                 
-                console.log('🔄 Dragging:', imagePosition);
+
                 e.preventDefault();
             }
         },
@@ -839,7 +842,7 @@ function initializeResumeProtection() {
                 } else {
                     resumeImage.style.cursor = 'default';
                 }
-                console.log('🔴 Drag ended at:', imagePosition);
+
             }
         }
     };
@@ -868,10 +871,10 @@ function initializeResumeProtection() {
     // Zoom functionality
     if (zoomInBtn) {
         zoomInBtn.addEventListener('click', () => {
-            console.log('🔍 Zoom In clicked');
+
             if (currentZoom < maxZoom) {
                 currentZoom += zoomStep;
-                console.log('📈 New zoom:', currentZoom);
+
                 applyZoom();
             }
         });
@@ -934,7 +937,7 @@ function applyZoom() {
             }
         }
         
-        console.log('📏 Zoom applied:', { zoom: currentZoom, position: imagePosition, dragging: isDragging });
+
     }
 }
 
@@ -958,17 +961,161 @@ function debounce(func, wait) {
     };
 }
 
-// Console security message
-console.log(`
-╔══════════════════════════════════════════════════════════════╗
-║                    🔒 SECURITY TERMINAL                      ║
-║                      ACCESS GRANTED                          ║
-║                                                              ║
-║  This is a secure system. All activities are monitored.      ║
-║  Portfolio Version: 1.6.2                                    ║
-║  Made with love and care by Saikat :3                        ║
-╚══════════════════════════════════════════════════════════════╝
-`);
+// Production ready - all debug messages removed
+
+// =====================================
+// CYBERPUNK CURSOR EFFECTS
+// =====================================
+
+class CyberpunkCursor {
+    constructor() {
+        this.cursorGlow = document.getElementById('cursor-glow');
+        this.mouseSpotlight = document.getElementById('mouse-spotlight');
+        this.isActive = false;
+        this.trails = [];
+        this.lastTrailTime = 0;
+        
+        this.init();
+    }
+    
+    init() {
+        if (!this.cursorGlow || !this.mouseSpotlight) return;
+        
+        // Enforce cursor hiding immediately and continuously
+        this.enforceCursorHiding();
+        
+        // Mouse movement tracking
+        document.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+        document.addEventListener('mouseenter', () => this.show());
+        document.addEventListener('mouseleave', () => this.hide());
+        
+        // Click effects
+        document.addEventListener('mousedown', () => this.handleMouseDown());
+        document.addEventListener('mouseup', () => this.handleMouseUp());
+        
+        // Touch support for mobile
+        document.addEventListener('touchstart', (e) => this.handleTouch(e));
+        document.addEventListener('touchmove', (e) => this.handleTouch(e));
+        
+        // Additional cursor hiding enforcement
+        document.addEventListener('DOMContentLoaded', () => this.enforceCursorHiding());
+        window.addEventListener('load', () => this.enforceCursorHiding());
+        
+        // Periodic enforcement to catch any dynamic elements
+        setInterval(() => this.enforceCursorHiding(), 1000);
+    }
+    
+    handleMouseMove(e) {
+        const x = e.clientX;
+        const y = e.clientY;
+        
+        // Update cursor position
+        this.cursorGlow.style.left = x + 'px';
+        this.cursorGlow.style.top = y + 'px';
+        
+        // Update spotlight position
+        this.mouseSpotlight.style.left = x + 'px';
+        this.mouseSpotlight.style.top = y + 'px';
+        
+        // Create trail effect
+        this.createTrail(x, y);
+        
+        if (!this.isActive) {
+            this.show();
+        }
+    }
+    
+    createTrail(x, y) {
+        const now = Date.now();
+        if (now - this.lastTrailTime > 50) { // Throttle trail creation
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            document.body.appendChild(trail);
+            
+            // Remove trail after animation
+            setTimeout(() => {
+                if (trail.parentNode) {
+                    trail.parentNode.removeChild(trail);
+                }
+            }, 800);
+            
+            this.lastTrailTime = now;
+        }
+    }
+    
+    handleMouseDown() {
+        document.body.classList.add('cursor-clicking');
+        this.mouseSpotlight.classList.add('clicking');
+    }
+    
+    handleMouseUp() {
+        document.body.classList.remove('cursor-clicking');
+        this.mouseSpotlight.classList.remove('clicking');
+    }
+    
+    handleTouch(e) {
+        if (e.touches.length > 0) {
+            const touch = e.touches[0];
+            this.handleMouseMove({ clientX: touch.clientX, clientY: touch.clientY });
+        }
+    }
+    
+    show() {
+        this.isActive = true;
+        this.cursorGlow.classList.add('active');
+        this.mouseSpotlight.classList.add('active');
+    }
+    
+    hide() {
+        this.isActive = false;
+        this.cursorGlow.classList.remove('active');
+        this.mouseSpotlight.classList.remove('active');
+        document.body.classList.remove('cursor-clicking');
+        this.mouseSpotlight.classList.remove('clicking');
+    }
+    
+    enforceCursorHiding() {
+        // Force cursor hiding on document and body
+        document.documentElement.style.cursor = 'none';
+        document.body.style.cursor = 'none';
+        
+        // Find and fix any elements that might have cursor styles
+        const allElements = document.querySelectorAll('*');
+        allElements.forEach(element => {
+            element.style.cursor = 'none';
+            
+            // Remove any cursor-related classes
+            const cursorClasses = [
+                'cursor-auto', 'cursor-default', 'cursor-pointer', 'cursor-wait',
+                'cursor-text', 'cursor-move', 'cursor-help', 'cursor-not-allowed',
+                'cursor-context-menu', 'cursor-progress', 'cursor-cell',
+                'cursor-crosshair', 'cursor-vertical-text', 'cursor-alias',
+                'cursor-copy', 'cursor-no-drop', 'cursor-grab', 'cursor-grabbing'
+            ];
+            
+            cursorClasses.forEach(className => {
+                if (element.classList.contains(className)) {
+                    element.classList.remove(className);
+                }
+            });
+        });
+        
+        // Override any CSS cursor rules dynamically
+        if (!document.getElementById('cursor-override-style')) {
+            const style = document.createElement('style');
+            style.id = 'cursor-override-style';
+            style.textContent = `
+                * { cursor: none !important; }
+                *:hover { cursor: none !important; }
+                *:active { cursor: none !important; }
+                *:focus { cursor: none !important; }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+}
 
 // =====================================
 // PARTICLE SYSTEM & PARALLAX EFFECTS
@@ -1268,7 +1415,7 @@ class ScrollAnimations {
         setTimeout(() => {
             // Find and observe elements with animation classes
             const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
-            console.log('Found animated elements:', animatedElements.length);
+
             
             animatedElements.forEach(el => {
                 // Ensure elements start invisible (except hero elements)
@@ -1299,7 +1446,7 @@ class ScrollAnimations {
             
             if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
                 // Element is sufficiently visible, fade in
-                console.log('Fading in:', element.className);
+
                 element.classList.add('animate');
                 
                 // Add stagger effect for child elements
@@ -1312,7 +1459,7 @@ class ScrollAnimations {
                 
             } else if (!entry.isIntersecting) {
                 // Element is not visible, fade out
-                console.log('Fading out:', element.className);
+
                 element.classList.remove('animate');
                 
                 // Remove animate from children too

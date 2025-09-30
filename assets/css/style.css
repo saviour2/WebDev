@@ -14,6 +14,225 @@
     --glow-cyber: 0 0 20px rgba(0, 245, 255, 0.4);
 }
 
+/* Font Awesome Icon Fixes */
+.fas, .far, .fab, .fal, .fad, .fa {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "Font Awesome 6 Brands" !important;
+    font-weight: 900;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* =====================================
+   CYBERPUNK CURSOR EFFECTS
+   ===================================== */
+
+/* Robust cursor hiding - Fix random visibility bug */
+html {
+    cursor: none !important;
+}
+
+body {
+    cursor: none !important;
+}
+
+/* Universal selector with high specificity */
+* {
+    cursor: none !important;
+}
+
+*:hover {
+    cursor: none !important;
+}
+
+*:active {
+    cursor: none !important;
+}
+
+*:focus {
+    cursor: none !important;
+}
+
+/* Override any possible cursor styles */
+a, button, input, textarea, select, option,
+[role="button"], [onclick], [href], [tabindex],
+.cursor-pointer, .hover\:cursor-pointer {
+    cursor: none !important;
+}
+
+/* Tailwind cursor utilities override */
+.cursor-auto, .cursor-default, .cursor-pointer, .cursor-wait,
+.cursor-text, .cursor-move, .cursor-help, .cursor-not-allowed,
+.cursor-none, .cursor-context-menu, .cursor-progress,
+.cursor-cell, .cursor-crosshair, .cursor-vertical-text,
+.cursor-alias, .cursor-copy, .cursor-no-drop, .cursor-grab,
+.cursor-grabbing, .cursor-all-scroll, .cursor-col-resize,
+.cursor-row-resize, .cursor-n-resize, .cursor-e-resize,
+.cursor-s-resize, .cursor-w-resize, .cursor-ne-resize,
+.cursor-nw-resize, .cursor-se-resize, .cursor-sw-resize,
+.cursor-ew-resize, .cursor-ns-resize, .cursor-nesw-resize,
+.cursor-nwse-resize, .cursor-zoom-in, .cursor-zoom-out {
+    cursor: none !important;
+}
+
+/* Custom Cursor Glow */
+#cursor-glow {
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease-out, opacity 0.3s ease;
+}
+
+#cursor-glow.active {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+}
+
+/* Light Mode Cursor - Natural Dark Theme */
+#cursor-glow > div:nth-child(1) {
+    /* Subtle dark ring - works well on light backgrounds */
+    background: radial-gradient(circle, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.4) 60%, transparent 100%);
+    box-shadow: 0 0 6px rgba(30, 41, 59, 0.3), 0 0 12px rgba(15, 23, 42, 0.2);
+}
+
+#cursor-glow > div:nth-child(2) {
+    /* Sharp dark center - high contrast */
+    background: rgba(15, 23, 42, 0.95); /* slate-900 - deep dark */
+    box-shadow: 0 0 3px rgba(15, 23, 42, 0.8);
+}
+
+/* Mouse Spotlight Effect - Light Mode */
+#mouse-spotlight {
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.2s ease-out;
+}
+
+#mouse-spotlight.active {
+    opacity: 0.4;
+}
+
+#mouse-spotlight.clicking {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.6;
+}
+
+#mouse-spotlight > div:nth-child(1) {
+    background: radial-gradient(circle, rgba(30, 41, 59, 0.08) 0%, rgba(15, 23, 42, 0.04) 50%, transparent 100%);
+}
+
+#mouse-spotlight > div:nth-child(2) {
+    background: radial-gradient(circle, rgba(51, 65, 85, 0.06) 0%, rgba(30, 41, 59, 0.03) 50%, transparent 100%);
+}
+
+/* Radial gradient utility */
+.bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Final cursor override - highest priority */
+html, html *, html *:hover, html *:active, html *:focus {
+    cursor: none !important;
+}
+
+/* Prevent any framework or library cursor overrides */
+body[style*="cursor"], *[style*="cursor"] {
+    cursor: none !important;
+}
+
+/* Dark Mode Cursor - Compact Cyan Theme */
+.dark #cursor-glow > div:nth-child(1) {
+    /* Inner glow core */
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.8) 0%, rgba(34, 211, 238, 0.5) 60%, transparent 100%);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 18px rgba(34, 211, 238, 0.4);
+}
+
+.dark #cursor-glow > div:nth-child(2) {
+    /* Center dot */
+    background: rgba(103, 232, 249, 0.95); /* cyan-300 */
+    box-shadow: 0 0 6px rgba(103, 232, 249, 1), 0 0 12px rgba(0, 255, 255, 0.6);
+}
+
+.dark #mouse-spotlight.active {
+    opacity: 0.7;
+}
+
+.dark #mouse-spotlight > div:nth-child(1) {
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, rgba(34, 211, 238, 0.1) 50%, transparent 100%);
+}
+
+.dark #mouse-spotlight > div:nth-child(2) {
+    background: radial-gradient(circle, rgba(103, 232, 249, 0.15) 0%, rgba(0, 255, 255, 0.08) 50%, transparent 100%);
+}
+
+/* Cursor trail effect - Natural and subtle */
+.cursor-trail {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    background: radial-gradient(circle, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.5) 50%, transparent 80%); /* Light mode: natural dark */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    animation: trailFade 1s ease-out forwards;
+    box-shadow: 0 0 4px rgba(30, 41, 59, 0.4);
+}
+
+.dark .cursor-trail {
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.9) 0%, rgba(34, 211, 238, 0.6) 50%, transparent 80%); /* Dark mode: cyan */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.9), 0 0 20px rgba(34, 211, 238, 0.5);
+    border: 1px solid rgba(103, 232, 249, 0.7);
+}
+
+@keyframes trailFade {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+}
+
+/* Hover effects for interactive elements */
+a:hover, button:hover, .hover\:scale-105:hover {
+    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.5));
+}
+
+/* Special cursor states - Click effects */
+body.cursor-clicking #cursor-glow {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Light mode click effect - Warm Orange Accent */
+body.cursor-clicking #cursor-glow > div:nth-child(1) {
+    background: radial-gradient(circle, rgba(234, 88, 12, 0.8) 0%, rgba(194, 65, 12, 0.5) 60%, transparent 100%) !important;
+    box-shadow: 0 0 8px rgba(234, 88, 12, 0.6), 0 0 16px rgba(251, 146, 60, 0.3) !important;
+}
+
+body.cursor-clicking #cursor-glow > div:nth-child(2) {
+    background: rgba(251, 146, 60, 0.95) !important; /* warm orange center */
+    box-shadow: 0 0 4px rgba(251, 146, 60, 0.8) !important;
+}
+
+/* Dark mode click effect - Electric Pink */
+.dark body.cursor-clicking #cursor-glow > div:nth-child(1) {
+    background: radial-gradient(circle, rgba(255, 20, 147, 0.8) 0%, rgba(255, 105, 180, 0.5) 60%, transparent 100%) !important;
+    box-shadow: 0 0 12px rgba(255, 20, 147, 0.8), 0 0 24px rgba(255, 105, 180, 0.4) !important;
+}
+
+.dark body.cursor-clicking #cursor-glow > div:nth-child(2) {
+    background: rgba(255, 182, 193, 0.95) !important;
+    box-shadow: 0 0 8px rgba(255, 182, 193, 1), 0 0 16px rgba(255, 20, 147, 0.6) !important;
+}
+
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
@@ -434,7 +653,7 @@ button:hover::before, a.button:hover::before {
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Duplicate project-card styles removed - consolidated above */
+/* Project card styling completed */
 
 /* --- End fix --- */
 

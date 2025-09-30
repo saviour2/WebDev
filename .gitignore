@@ -31,7 +31,7 @@ logs/
 tmp/
 temp/
 .cache/
-.prompt
+
 
 # Operating System files
 Thumbs.db
@@ -59,7 +59,6 @@ DRAFT_*
 *.dev.css
 *.dev.js
 debug.log
-context.json
 CERTIFICATE_SETUP.md
 
 # Archive files
