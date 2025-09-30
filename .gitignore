@@ -40,3 +40,27 @@ desktop.ini
 # Backup files
 *.bak
 *.backup
+
+# Development and testing files
+.vscode/settings.json
+*.test.js
+test/
+coverage/
+
+# Local server files
+.cache/
+.parcel-cache/
+
+# Documentation drafts
+*.draft.md
+DRAFT_*
+
+# Temporary development files
+*.dev.css
+*.dev.js
+debug.log
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
